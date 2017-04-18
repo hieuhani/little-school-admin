@@ -5,17 +5,19 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
 
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 {{/if}}
+{{#if wantStylesheet}}
+  import './styles.scss';
+{{/if}}
 
 class {{ properCase name }} extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <div className="{{ dashCase name }}">
       {{#if wantMessages}}
         <FormattedMessage {...messages.header} />
       {{/if}}

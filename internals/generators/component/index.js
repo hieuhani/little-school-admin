@@ -33,9 +33,14 @@ module.exports = {
     name: 'wantMessages',
     default: true,
     message: 'Do you want i18n messages (i.e. will this component use text)?',
+  }, {
+    type: 'confirm',
+    name: 'wantStylesheet',
+    default: true,
+    message: 'Do you want stylesheet file?',
   }],
   actions: (data) => {
-    // Generate index.js and index.test.js
+    // Generate index.js
     let componentTemplate;
 
     switch (data.type) {
@@ -61,11 +66,6 @@ module.exports = {
       path: '../../app/components/{{properCase name}}/index.js',
       templateFile: componentTemplate,
       abortOnFail: true,
-    }, {
-      type: 'add',
-      path: '../../app/components/{{properCase name}}/tests/index.test.js',
-      templateFile: './component/test.js.hbs',
-      abortOnFail: true,
     }];
 
     // If they want a i18n messages file
@@ -74,6 +74,15 @@ module.exports = {
         type: 'add',
         path: '../../app/components/{{properCase name}}/messages.js',
         templateFile: './component/messages.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if (data.wantStylesheet) {
+      actions.push({
+        type: 'add',
+        path: '../../app/components/{{properCase name}}/styles.scss',
+        templateFile: './component/styles.scss.hbs',
         abortOnFail: true,
       });
     }
