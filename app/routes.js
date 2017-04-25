@@ -22,13 +22,15 @@ export default function createRoutes(store) {
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('containers/HomePage'),
+          import('containers/Authentication'),
+          import('containers/Login/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
-          renderRoute(component);
+        importModules.then(([authenticationComponent, loginSagas]) => {
+          injectSagas(loginSagas.default);
+          renderRoute(authenticationComponent);
         });
 
         importModules.catch(errorLoading);
