@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.form-login {
+  .form-actions {
+    margin-top: 14px;
+    .forgot {
+      float: right;
+      color: $main-color;
+    }
+  }
+  .copyright {
+    margin-top: 60px;
+    p {
+      margin: 0;
+      color: #888;
+      text-align: center;
+    }
+  }
+}

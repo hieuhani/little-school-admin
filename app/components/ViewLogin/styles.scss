@@ -1,8 +1,59 @@
 .view-login {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('./login-bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
   .wrapper {
-    background: #222;
-    max-width: 800px;
-    margin: 2em auto;
-    height: 300px;
+    margin: 100px auto;
+    width: 800px;
+    background: #FFF;
+
+    .login-form {
+      padding: 30px 50px 30px 30px;
+      .logo {
+        width: 250px;
+        height: 80px;
+        background: #54ca35;
+      }
+    }
+    .intro {
+      background-color: #54ca35;
+      padding-bottom: 20px;
+      position: relative;
+      img {
+        width: 100%;
+        margin-left: -30px;
+      }
+      .bubble-image {
+        position: absolute;
+        right: 71px;
+        bottom: -71px;
+        height: 71px;
+        width: 100px;
+        background: url('./bubble.png') no-repeat;
+
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  .view-login {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
   }
 }

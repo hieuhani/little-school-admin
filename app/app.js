@@ -16,7 +16,7 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Import root app
@@ -34,6 +34,10 @@ import '!file-loader?name=[name].[ext]!./favicon.ico';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
+
+
+// Import custom base theme
+import customBaseTheme from './styles/customBaseTheme';
 
 import configureStore from './store';
 
@@ -68,7 +72,7 @@ const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={getMuiTheme(customBaseTheme)}>
           <Router
             history={history}
             routes={rootRoute}
