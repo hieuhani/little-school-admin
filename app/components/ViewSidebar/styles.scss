@@ -15,6 +15,13 @@
     height: 59px;
   }
 
+  .menu-items {
+    a {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+
   .user {
     width: 240px;
     color: #FFF;

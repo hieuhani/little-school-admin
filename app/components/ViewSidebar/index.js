@@ -7,14 +7,19 @@
 import React from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
-import ContentLink from 'material-ui/svg-icons/content/link';
 import Divider from 'material-ui/Divider';
-import ContentCopy from 'material-ui/svg-icons/content/content-copy';
-import Download from 'material-ui/svg-icons/file/file-download';
-import Delete from 'material-ui/svg-icons/action/delete';
+import Subheader from 'material-ui/Subheader';
+import Assessment from 'material-ui/svg-icons/action/assessment';
+import SupervisorAccount from 'material-ui/svg-icons/action/supervisor-account';
+import GroupAdd from 'material-ui/svg-icons/social/group-add';
+import School from 'material-ui/svg-icons/social/school';
+import TrendingUp from 'material-ui/svg-icons/action/trending-up';
+import Settings from 'material-ui/svg-icons/action/settings';
+import Share from 'material-ui/svg-icons/social/share';
+import ThumbsUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
+import LibraryBooks from 'material-ui/svg-icons/av/library-books';
 
+import { Link } from 'react-router';
 import './styles.scss';
 
 function ViewSidebar() {
@@ -30,14 +35,38 @@ function ViewSidebar() {
       </div>
       <div className="menu-items">
         <Menu width="240px" autoWidth={false}>
-          <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
-          <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
-          <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
+          <Subheader>Resources and students</Subheader>
+          <Link to="/">
+            <MenuItem primaryText="Courses" leftIcon={<LibraryBooks />} />
+          </Link>
+          <Link to="/">
+            <MenuItem primaryText="Classes" leftIcon={<School />} />
+          </Link>
+          <Link to="/">
+            <MenuItem primaryText="Students" leftIcon={<GroupAdd />} />
+          </Link>
+          <Link to="/">
+            <MenuItem primaryText="Test Bank" leftIcon={<Assessment />} />
+          </Link>
           <Divider />
-          <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
-          <MenuItem primaryText="Download" leftIcon={<Download />} />
+          <Subheader>Internal school</Subheader>
+          <Link to="/">
+            <MenuItem primaryText="Staffs" leftIcon={<SupervisorAccount />} />
+          </Link>
+          <Link to="/">
+            <MenuItem primaryText="Announcements" leftIcon={<Share />} />
+          </Link>
+          <Link to="/">
+            <MenuItem primaryText="Feedback" leftIcon={<ThumbsUpDown />} />
+          </Link>
+          <Link to="/">
+            <MenuItem primaryText="Settings" leftIcon={<Settings />} />
+          </Link>
           <Divider />
-          <MenuItem primaryText="Remove" leftIcon={<Delete />} />
+          <Subheader>Statistics</Subheader>
+          <Link to="/">
+            <MenuItem primaryText="Analytics" leftIcon={<TrendingUp />} />
+          </Link>
         </Menu>
       </div>
     </aside>

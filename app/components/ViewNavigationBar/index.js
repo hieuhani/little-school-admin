@@ -1,6 +1,17 @@
 import React from 'react';
 import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+import { white } from 'material-ui/styles/colors';
+
 import './styles.scss';
+
+const styles = {
+  navIcon: {
+    width: 59,
+    height: 59,
+    padding: 18,
+  },
+};
 
 function ViewNavigationBar() {
   return (
@@ -15,14 +26,14 @@ function ViewNavigationBar() {
         </a>
         <ul className="nav nav-pills right-items">
           <li className="nav-item">
-            <a className="nav-link" href="#About">
-              <FontIcon className="material-icons">home</FontIcon>
-            </a>
+            <IconButton tooltip="Home" style={styles.navIcon}>
+              <FontIcon className="material-icons" color={white}>home</FontIcon>
+            </IconButton>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#Contact">
-              <FontIcon className="material-icons">notifications_none</FontIcon>
-            </a>
+            <IconButton tooltip="Notifications" style={styles.navIcon}>
+              <FontIcon className="material-icons" color={white}>notifications_none</FontIcon>
+            </IconButton>
           </li>
         </ul>
       </nav>
