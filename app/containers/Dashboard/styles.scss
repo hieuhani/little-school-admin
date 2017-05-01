@@ -1,0 +1,17 @@
+.dashboard {
+  .wrapper {
+    .content {
+      margin-left: 240px;
+      padding-top: 59px;
+      transition: margin-left .3s ease;
+      position: relative;
+    }
+
+    .main {
+      padding: 1rem;
+      margin: -3rem 1.5rem 1.5rem 1.5rem;
+
+      background-color: #FFF;
+    }
+  }
+}

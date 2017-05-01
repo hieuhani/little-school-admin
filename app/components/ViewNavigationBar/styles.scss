@@ -1,0 +1,60 @@
+@import '../../styles/variables';
+
+.view-navigation-bar {
+  .navigation-bar {
+    background-color: #333333;
+    padding: 0;
+    a {
+      color: #FFF;
+    }
+
+    .navbar-brand {
+      font-size: 18px;
+      width: 240px;
+      margin-right: 0;
+      padding: 1rem;
+      float: left;
+    }
+
+    .school {
+      color: #FFF;
+      width: 240px;
+      display: block;
+      float: left;
+      padding: 0.67rem 1rem;
+      .info {
+        .name {
+          font-size: 16px;
+          margin-bottom: 0;
+          font-weight: 400;
+        }
+        .address {
+          margin-bottom: 0;
+          font-size: 14px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .left-items {
+      float: left;
+      li {
+        a {
+          .name {
+            font-size: 16px;
+            margin-bottom: 0;
+            font-weight: 400;
+          }
+          .address {
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+    .right-items {
+      float: right;
+    }
+  }
+}

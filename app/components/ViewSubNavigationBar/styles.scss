@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+
+.view-sub-navigation-bar {
+  background-color: $main-color;
+  margin-top: 59px;
+  min-height: 60px;
+
+  .user {
+    width: 240px;
+    color: #FFF;
+    padding: 0.67rem 1rem;
+    float: left;
+    background-color: #31a313;
+    .info {
+      .name {
+        font-size: 16px;
+        margin-bottom: 0;
+        font-weight: 400;
+      }
+      .address {
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .breadcrumb-bar {
+    color: #FFF;
+    float: left;
+    padding: 0.46rem 1rem;
+    .title {
+      font-size: 1.5rem;
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+    .description {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+      font-weight: 300;
+    }
+  }
+}

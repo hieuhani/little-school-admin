@@ -1,0 +1,44 @@
+.view-sidebar {
+  transition: transform .3s ease,width .3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  padding-bottom: 65px;
+  background-color: #FFF;
+  font-size: 1rem;
+  z-index: 1000;
+  transform: translate3d(0,0,0);
+
+  .top-spacing {
+    height: 59px;
+  }
+
+  .user {
+    width: 240px;
+    color: #FFF;
+    padding: 0.67rem 1rem;
+    float: left;
+    background-color: #31a313;
+    .avatar {
+      float: left;
+      width: 50px;
+    }
+    .info {
+      float: left;
+      padding-left: 10px;
+      padding-top: 5px;
+      .name {
+        font-size: 18px;
+        margin-bottom: 0;
+        font-weight: 400;
+      }
+      .title {
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+  }
+}

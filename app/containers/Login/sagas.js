@@ -1,6 +1,6 @@
 import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-
+import _ from 'lodash';
 import { ACCESS_TOKEN_KEY } from 'config';
 import { SIGN_IN_BY_EMAIL_REQUEST } from './constants';
 import request, { routes } from '../../services/api';
@@ -22,9 +22,9 @@ export function setAuthToken(token) {
  * @param payload
  */
 export function* postSignInByEmail({ payload }) {
-  const response = yield call(request, routes.login(payload));
+  const response = yield call(request, routes.exchangeToken(payload.email, payload.password));
   if (!response.error) {
-    const authToken = response.data.token;
+    const authToken = _.get(response, 'data.token.encoded');
     if (authToken) {
       yield call(setAuthToken, authToken);
       yield put(signInByEmailSuccess(response.data));

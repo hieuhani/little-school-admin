@@ -4,18 +4,18 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import FormLogin from '../FormLogin';
 import './styles.scss';
 
 const introImage = require('./intro-image.png');
-function ViewLogin() {
+function ViewLogin(props) {
   return (
     <div className="view-login">
       <div className="wrapper row">
         <div className="col-md-6 login-form">
           <h2 className="logo" />
-          <FormLogin />
+          <FormLogin onSubmit={props.onLoginFormSubmit} />
         </div>
         <div className="col-md-6 intro">
           <img src={introImage} role="presentation" />
@@ -27,7 +27,7 @@ function ViewLogin() {
 }
 
 ViewLogin.propTypes = {
-
+  onLoginFormSubmit: PropTypes.func.isRequired,
 };
 
 export default ViewLogin;

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Login from '../Login';
+import Dashboard from '../Dashboard';
 import {
   selectLoginStatus,
 } from './selectors';
@@ -25,15 +26,10 @@ export class Authentication extends React.PureComponent { // eslint-disable-line
     }
     let page = <Login />;
     if (this.props.isLoggedIn) {
-      // page = (
-      //   <Dashboard pathname={this.props.location.pathname}>
-      //     {this.props.children}
-      //   </Dashboard>
-      // );
       page = (
-        <div>
-          Logged in successfully
-        </div>
+        <Dashboard pathname={this.props.location.pathname}>
+          {this.props.children}
+        </Dashboard>
       );
     }
     return page;
@@ -44,8 +40,8 @@ export class Authentication extends React.PureComponent { // eslint-disable-line
 Authentication.propTypes = {
   checkLogInStatus: React.PropTypes.func,
   isLoggedIn: React.PropTypes.bool,
-  // children: React.PropTypes.node,
-  // location: React.PropTypes.object,
+  children: React.PropTypes.node,
+  location: React.PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -1,5 +1,10 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #ebebeb;
+}
+
 .clear-button {
   background: transparent;
   border: none;

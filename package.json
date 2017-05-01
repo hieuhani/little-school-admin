@@ -239,6 +239,7 @@
     "redux-immutable": "3.0.8",
     "redux-saga": "0.14.0",
     "reselect": "2.5.4",
+    "validator": "^7.0.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.1"
   },
