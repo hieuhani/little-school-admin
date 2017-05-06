@@ -36,7 +36,7 @@ function ViewSidebar() {
       <div className="menu-items">
         <Menu width="240px" autoWidth={false}>
           <Subheader>Resources and students</Subheader>
-          <Link to="/">
+          <Link to="/courses">
             <MenuItem primaryText="Courses" leftIcon={<LibraryBooks />} />
           </Link>
           <Link to="/">

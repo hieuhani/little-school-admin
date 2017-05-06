@@ -35,6 +35,65 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
+      childRoutes: [
+        {
+          path: '/courses',
+          name: 'courses',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Courses/sagas'),
+              import('containers/Courses'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([coursesSagas, component]) => {
+              injectSagas(coursesSagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
+        {
+          path: '/courses/:courseId',
+          name: 'courses',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Course/sagas'),
+              import('containers/Course'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([courseSagas, courseComponent]) => {
+              injectSagas(courseSagas.default);
+              renderRoute(courseComponent);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
+        {
+          path: '/courses/:courseId/units/:unitId',
+          name: 'courses',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Unit/sagas'),
+              import('containers/Unit'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([unitSagas, unitComponent]) => {
+              injectSagas(unitSagas.default);
+              renderRoute(unitComponent);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
+      ],
     }, {
       path: '*',
       name: 'notfound',

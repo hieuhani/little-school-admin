@@ -11,6 +11,9 @@ import { reducer as form } from 'redux-form/immutable';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import loginReducer from 'containers/Login/reducer';
 import authenticationReducer from 'containers/Authentication/reducer';
+import coursesReducer from 'containers/Courses/reducer';
+import courseReducer from 'containers/Course/reducer';
+import unitReducer from 'containers/Unit/reducer';
 
 /*
  * routeReducer
@@ -50,6 +53,9 @@ export default function createReducer(asyncReducers) {
     language: languageProviderReducer,
     login: loginReducer,
     authentication: authenticationReducer,
+    courses: coursesReducer,
+    course: courseReducer,
+    unit: unitReducer,
     ...asyncReducers,
   });
 }
