@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-const baseAPIEndpoint = 'http://staging.littleschoolvn.com';
+const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
 
 export const httpMethods = {
   POST: 'POST',

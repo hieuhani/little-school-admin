@@ -4,19 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ViewSidebar from '../../components/ViewSidebar';
 
 export class Sidebar extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <ViewSidebar />
+      <ViewSidebar pathname={this.props.pathname} />
     );
   }
 }
 
 Sidebar.propTypes = {
+  pathname: PropTypes.string,
 };
 
 

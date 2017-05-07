@@ -19,14 +19,13 @@ function ViewCoursesHeader() {
       <div className="row">
         <div className="col-md-3">
           <TextField
-            hintText={<ViewIconTextField icon="add" text="Search by course name" />}
+            hintText={<ViewIconTextField icon="search" text="Search by course name" />}
           />
         </div>
         <div className="col-md-3">
         </div>
         <div className="col-md-3 offset-3">
           <RaisedButton
-            href="https://github.com/callemall/material-ui"
             target="_blank"
             label="Add a new course"
             icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}

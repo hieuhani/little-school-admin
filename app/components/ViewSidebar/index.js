@@ -4,7 +4,7 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
@@ -18,11 +18,70 @@ import Settings from 'material-ui/svg-icons/action/settings';
 import Share from 'material-ui/svg-icons/social/share';
 import ThumbsUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
 import LibraryBooks from 'material-ui/svg-icons/av/library-books';
-
 import { Link } from 'react-router';
+import { grey300 } from 'material-ui/styles/colors';
+
 import './styles.scss';
 
-function ViewSidebar() {
+const sidebarItems = [
+  {
+    group: 'Resources and students',
+  },
+  {
+    path: '/courses',
+    text: 'Courses',
+    icon: <LibraryBooks />,
+  },
+  {
+    path: '/#',
+    text: 'Classes',
+    icon: <School />,
+  },
+  {
+    path: '/#',
+    text: 'Students',
+    icon: <GroupAdd />,
+  },
+  {
+    path: '/#',
+    text: 'Test Bank',
+    icon: <Assessment />,
+  },
+  {
+    group: 'Internal school',
+  },
+  {
+    path: '/#',
+    text: 'Staffs',
+    icon: <SupervisorAccount />,
+  },
+  {
+    path: '/#',
+    text: 'Announcements',
+    icon: <Share />,
+  },
+  {
+    path: '/#',
+    text: 'Feedback',
+    icon: <ThumbsUpDown />,
+  },
+  {
+    path: '/#',
+    text: 'Settings',
+    icon: <Settings />,
+  },
+  {
+    group: 'Statistics',
+  },
+  {
+    path: '/#',
+    text: 'Analytics',
+    icon: <TrendingUp />,
+  },
+];
+
+function ViewSidebar(props) {
+  console.log(props.pathname);
   return (
     <aside className="view-sidebar">
       <div className="top-spacing" />
@@ -35,46 +94,47 @@ function ViewSidebar() {
       </div>
       <div className="menu-items">
         <Menu width="240px" autoWidth={false}>
-          <Subheader>Resources and students</Subheader>
-          <Link to="/courses">
-            <MenuItem primaryText="Courses" leftIcon={<LibraryBooks />} />
-          </Link>
-          <Link to="/">
-            <MenuItem primaryText="Classes" leftIcon={<School />} />
-          </Link>
-          <Link to="/">
-            <MenuItem primaryText="Students" leftIcon={<GroupAdd />} />
-          </Link>
-          <Link to="/">
-            <MenuItem primaryText="Test Bank" leftIcon={<Assessment />} />
-          </Link>
-          <Divider />
-          <Subheader>Internal school</Subheader>
-          <Link to="/">
-            <MenuItem primaryText="Staffs" leftIcon={<SupervisorAccount />} />
-          </Link>
-          <Link to="/">
-            <MenuItem primaryText="Announcements" leftIcon={<Share />} />
-          </Link>
-          <Link to="/">
-            <MenuItem primaryText="Feedback" leftIcon={<ThumbsUpDown />} />
-          </Link>
-          <Link to="/">
-            <MenuItem primaryText="Settings" leftIcon={<Settings />} />
-          </Link>
-          <Divider />
-          <Subheader>Statistics</Subheader>
-          <Link to="/">
-            <MenuItem primaryText="Analytics" leftIcon={<TrendingUp />} />
-          </Link>
+          {sidebarItems.map((item, idx) => {
+            let node;
+            if (item.group) {
+              if (idx > 0) {
+                node = (
+                  <div>
+                    <Divider />
+                    <Subheader>{item.group}</Subheader>
+                  </div>
+                );
+              } else {
+                node = <Subheader>{item.group}</Subheader>;
+              }
+            } else {
+              node = (
+                <Link to={item.path}>
+                  <MenuItem primaryText={item.text} leftIcon={item.icon} style={props.pathname.startsWith(item.path) ? styles.activeMenuItem : styles.EMPTY_STYLE} />
+                </Link>
+              );
+            }
+            return (
+              <div key={idx}>
+                {node}
+              </div>
+            );
+          })}
         </Menu>
       </div>
     </aside>
   );
 }
 
-ViewSidebar.propTypes = {
+const styles = {
+  EMPTY_STYLE: {},
+  activeMenuItem: {
+    backgroundColor: grey300,
+  },
+};
 
+ViewSidebar.propTypes = {
+  pathname: PropTypes.string,
 };
 
 export default ViewSidebar;

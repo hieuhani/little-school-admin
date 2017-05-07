@@ -13,14 +13,13 @@ function ViewUnitHeader() {
       <div className="row">
         <div className="col-md-3">
           <TextField
-            hintText={<ViewIconTextField icon="add" text="Search vocabulary" />}
+            hintText={<ViewIconTextField icon="search" text="Search vocabulary" />}
           />
         </div>
         <div className="col-md-3">
         </div>
         <div className="col-md-3 offset-3">
           <RaisedButton
-            href="https://github.com/callemall/material-ui"
             target="_blank"
             label="Add a new vocabulary"
             icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}

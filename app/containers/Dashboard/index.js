@@ -18,7 +18,7 @@ export class Dashboard extends React.PureComponent { // eslint-disable-line reac
       <div className="dashboard">
         <NavigationBar />
         <div className="wrapper">
-          <Sidebar />
+          <Sidebar pathname={this.props.pathname} />
           <section className="content">
             <ViewBreadcrumb />
             <div className="main">
@@ -33,6 +33,7 @@ export class Dashboard extends React.PureComponent { // eslint-disable-line reac
 
 Dashboard.propTypes = {
   children: PropTypes.node,
+  pathname: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
