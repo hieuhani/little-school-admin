@@ -7,17 +7,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import ViewUnitDetail from '../../components/ViewUnitDetail';
 
 export class Unit extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
     const { unitId } = this.props.params;
-    console.log(unitId); // eslint-disable-line no-console
+    console.log(`Unit ID: ${unitId}`); // eslint-disable-line no-console
   }
 
   render() {
     return (
       <div>
-        Unit
+        <ViewUnitDetail />
       </div>
     );
   }

@@ -1,0 +1,31 @@
+.view-unit-detail {
+  .unit {
+    padding: 25px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: table;
+    width: 100%;
+
+    > div {
+      display: table-cell;
+    }
+    .icon {
+      width: 200px;
+      img {
+        width: 100%;
+      }
+    }
+    .info {
+      vertical-align: bottom;
+      padding-left: 15px;
+      .name {
+        margin-bottom: 5px;
+      }
+    }
+    .actions {
+      vertical-align: bottom;
+    }
+  }
+}
