@@ -33,7 +33,7 @@ const sidebarItems = [
     icon: <LibraryBooks />,
   },
   {
-    path: '/#',
+    path: '/classes',
     text: 'Classes',
     icon: <School />,
   },

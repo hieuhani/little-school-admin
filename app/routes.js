@@ -93,6 +93,25 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         },
+        {
+          path: '/classes',
+          name: 'classes',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Classes/sagas'),
+              import('containers/Classes'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([classesSagas, classesComponent]) => {
+              injectSagas(classesSagas.default);
+              renderRoute(classesComponent);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
       ],
     }, {
       path: '*',

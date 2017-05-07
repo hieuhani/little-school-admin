@@ -14,6 +14,7 @@ import authenticationReducer from 'containers/Authentication/reducer';
 import coursesReducer from 'containers/Courses/reducer';
 import courseReducer from 'containers/Course/reducer';
 import unitReducer from 'containers/Unit/reducer';
+import classesReducer from 'containers/Classes/reducer';
 
 /*
  * routeReducer
@@ -56,6 +57,7 @@ export default function createReducer(asyncReducers) {
     courses: coursesReducer,
     course: courseReducer,
     unit: unitReducer,
+    classes: classesReducer,
     ...asyncReducers,
   });
 }
