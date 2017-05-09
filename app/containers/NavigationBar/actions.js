@@ -3,13 +3,16 @@
  * NavigationBar actions
  *
  */
-
 import {
-  DEFAULT_ACTION,
+  ACCESS_TOKEN_KEY,
+ } from '../../config';
+import {
+  LOG_OUT,
 } from './constants';
 
-export function defaultAction() {
+export function logout() {
+  window.localStorage.removeItem(ACCESS_TOKEN_KEY);
   return {
-    type: DEFAULT_ACTION,
+    type: LOG_OUT,
   };
 }

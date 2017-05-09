@@ -1,7 +1,10 @@
 import React from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
 import { white } from 'material-ui/styles/colors';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 import './styles.scss';
 
@@ -13,7 +16,7 @@ const styles = {
   },
 };
 
-function ViewNavigationBar() {
+function ViewNavigationBar(props) {
   return (
     <div className="view-navigation-bar">
       <nav className="navigation-bar fixed-top">
@@ -35,6 +38,21 @@ function ViewNavigationBar() {
               <FontIcon className="material-icons" color={white}>notifications_none</FontIcon>
             </IconButton>
           </li>
+          <li className="nav-item">
+            <IconMenu
+              className="icon-menu"
+              iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+              anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+              targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+            >
+              <MenuItem primaryText="Settings" />
+              <MenuItem primaryText="Help" />
+              <MenuItem
+                primaryText="Sign out"
+                onClick={props.handleUserSignOut}
+              />
+            </IconMenu>
+          </li>
         </ul>
       </nav>
     </div>
@@ -42,7 +60,7 @@ function ViewNavigationBar() {
 }
 
 ViewNavigationBar.propTypes = {
-
+  handleUserSignOut: React.PropTypes.func,
 };
 
 export default ViewNavigationBar;

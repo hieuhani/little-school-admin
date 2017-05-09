@@ -6,15 +6,23 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  LOG_OUT,
 } from './constants';
+import {
+  SIGN_IN_BY_EMAIL_SUCCESS,
+} from '../Login/constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  isLoggedOut: false,
+});
 
 function navigationBarReducer(state = initialState, action) {
-  switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+  const { type } = action;
+  switch (type) {
+    case LOG_OUT:
+      return state.set('isLoggedOut', true);
+    case SIGN_IN_BY_EMAIL_SUCCESS:
+      return state.set('isLoggedOut', false);
     default:
       return state;
   }
