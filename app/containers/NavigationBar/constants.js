@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/NavigationBar/DEFAULT_ACTION';
+export const LOG_OUT = 'app/NavigationBar/LOG_OUT';

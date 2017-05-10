@@ -15,6 +15,7 @@ import coursesReducer from 'containers/Courses/reducer';
 import courseReducer from 'containers/Course/reducer';
 import unitReducer from 'containers/Unit/reducer';
 import classesReducer from 'containers/Classes/reducer';
+import navigationBarReducer from 'containers/NavigationBar/reducer';
 
 /*
  * routeReducer
@@ -58,6 +59,7 @@ export default function createReducer(asyncReducers) {
     course: courseReducer,
     unit: unitReducer,
     classes: classesReducer,
+    navigationBar: navigationBarReducer,
     ...asyncReducers,
   });
 }

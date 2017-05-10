@@ -41,7 +41,7 @@ function ViewNavigationBar(props) {
           <li className="nav-item">
             <IconMenu
               className="icon-menu"
-              iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+              iconButtonElement={<IconButton><MoreVertIcon color={white} /></IconButton>}
               anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
               targetOrigin={{ horizontal: 'left', vertical: 'top' }}
             >
