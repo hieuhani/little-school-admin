@@ -54,6 +54,28 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          childRoutes: [
+            {
+              path: '/courses/add',
+              name: 'add_courses',
+              mode: 'modal',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/CoursesAdd/sagas'),
+                  import('containers/CoursesAdd'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([coursesSagas, component]) => {
+                  injectSagas(coursesSagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
+          ],
         },
         {
           path: '/courses/:courseId',
