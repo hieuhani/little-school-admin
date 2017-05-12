@@ -81,7 +81,6 @@ const sidebarItems = [
 ];
 
 function ViewSidebar(props) {
-  console.log(props.pathname);
   return (
     <aside className="view-sidebar">
       <div className="top-spacing" />

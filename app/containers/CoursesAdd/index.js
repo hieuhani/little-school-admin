@@ -7,14 +7,16 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import makeSelectCoursesAdd from './selectors';
+import ViewDialog from '../../components/ViewDialog';
+import ViewDialogHeader from '../../components/ViewDialogHeader';
+import FormAddCourse from '../../components/FormAddCourse';
 
 export class CoursesAdd extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
-        CoursesAdd
-      </div>
+      <ViewDialog header={<ViewDialogHeader title="Add new course" />}>
+        <FormAddCourse />
+      </ViewDialog>
     );
   }
 }
