@@ -1,10 +1,5 @@
-/**
-*
-* ViewIconTextField
-*
-*/
-
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
 import { minBlack } from 'material-ui/styles/colors';
 

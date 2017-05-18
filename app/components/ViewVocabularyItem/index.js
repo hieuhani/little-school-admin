@@ -1,10 +1,5 @@
-/**
-*
-* ViewVocabularyItem
-*
-*/
-
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { Card, CardMedia, CardTitle, CardActions } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';

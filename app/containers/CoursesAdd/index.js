@@ -1,10 +1,5 @@
-/*
- *
- * CoursesAdd
- *
- */
-
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import ViewDialog from '../../components/ViewDialog';
