@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { TextField } from 'material-ui';
-
 
 const FieldForm = ({ label, hintText, input, type, multiLine, meta: { touched, error } }) => (
   <TextField

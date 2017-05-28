@@ -1,9 +1,3 @@
-/**
-*
-* ViewCourseList
-*
-*/
-
 import React from 'react';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
