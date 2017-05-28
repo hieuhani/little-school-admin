@@ -19,7 +19,7 @@ function FormLogin(props) {
       <Field name="email" type="text" component={FieldForm} label="Email" hintText="Enter your email" />
       <Field name="password" type="password" component={FieldForm} label="Password" hintText="Enter your password" />
       <div className="form-actions">
-        <RaisedButton label="Sign in" primary onTouchTap={handleSubmit} disabled={invalid} />
+        <RaisedButton label="Sign in" primary onTouchTap={handleSubmit} disabled={invalid} type="submit" />
         <button className="clear-button forgot" type="button">Forgot password</button>
       </div>
       <div className="copyright">

@@ -1,15 +1,29 @@
-/*
- *
- * CoursesAdd actions
- *
- */
-
 import {
-  DEFAULT_ACTION,
+  CREATE_COURSE_REQUEST,
+  CREATE_COURSE_SUCCESS,
+  CREATE_COURSE_ERROR,
 } from './constants';
 
-export function defaultAction() {
+export function createCourse(schoolID, course) {
   return {
-    type: DEFAULT_ACTION,
+    type: CREATE_COURSE_REQUEST,
+    payload: {
+      schoolID,
+      course,
+    },
+  };
+}
+
+export function createCourseSuccess(data) {
+  return {
+    type: CREATE_COURSE_SUCCESS,
+    payload: data,
+  };
+}
+
+export function createCourseError(error) {
+  return {
+    type: CREATE_COURSE_ERROR,
+    payload: error,
   };
 }

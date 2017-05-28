@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import styled from 'styled-components';
+import { REQUEST_STATUS } from 'global-constants';
 import FieldForm from '../FieldForm';
 import Wrapper from './Wrapper';
 import ViewBottomToolbar from '../ViewBottomToolbar';
@@ -14,9 +15,9 @@ function FormAddCourse(props) {
         <Field name="description" type="text" component={FieldForm} label="Description" hintText="Course description" multiLine />
       </Wrapper>
       <ViewBottomToolbar>
-        <ButtonFlat label="Cancel" />
+        <ButtonFlat label="Cancel" onClick={props.cancelAddCourse} />
         <Spacer />
-        <ButtonFlat label="Add course" highlighted />
+        <ButtonFlat label="Add course" highlighted type="submit" disabled={props.status === REQUEST_STATUS.REQUESTING} />
       </ViewBottomToolbar>
     </form>
   );
@@ -28,6 +29,8 @@ const Spacer = styled.span`
 
 FormAddCourse.propTypes = {
   handleSubmit: PropTypes.func,
+  status: PropTypes.number,
+  cancelAddCourse: PropTypes.func,
 };
 
 export default reduxForm({

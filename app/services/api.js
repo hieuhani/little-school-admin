@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
+const baseAPIEndpoint = 'http://localhost:3000';
 
 export const httpMethods = {
   POST: 'POST',
@@ -27,6 +27,21 @@ export const routes = {
         password,
       },
     };
+  },
+  course: {
+    create(schoolID, course) {
+      return {
+        path: `/api/manager/schools/${schoolID}/courses`,
+        method: httpMethods.POST,
+        body: course,
+      };
+    },
+    all(schoolID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/courses`,
+        method: httpMethods.GET,
+      };
+    },
   },
 };
 
@@ -83,7 +98,7 @@ export default function request(route) {
   const token = window.localStorage.getItem(ACCESS_TOKEN_KEY);
   if (token) {
     const authHeader = {
-      'X-Access-Token': token,
+      Authorization: `Bearer ${token}`,
     };
     options.headers = _.assign({}, options.headers, authHeader);
   }

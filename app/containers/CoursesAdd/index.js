@@ -1,35 +1,57 @@
-/*
- *
- * CoursesAdd
- *
- */
-
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { createStructuredSelector } from 'reselect';
+import { REQUEST_STATUS } from 'global-constants';
 import ViewDialog from '../../components/ViewDialog';
 import ViewDialogHeader from '../../components/ViewDialogHeader';
 import FormAddCourse from '../../components/FormAddCourse';
 
-export class CoursesAdd extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import {
+  selectStatus,
+} from './selectors';
+
+import {
+  createCourse,
+} from './actions';
+
+export class CoursesAdd extends React.PureComponent {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.status === REQUEST_STATUS.REQUESTING && nextProps.status === REQUEST_STATUS.SUCCEEDED) {
+      this.closeForm();
+    }
+  }
+
+  closeForm() {
+    browserHistory.push('/courses');
+  }
+
   render() {
     return (
       <ViewDialog header={<ViewDialogHeader title="Add new course" />}>
-        <FormAddCourse />
+        <FormAddCourse
+          onSubmit={(course) => this.props.createCourse(1, course)}
+          cancelAddCourse={this.closeForm}
+          status={this.props.status}
+        />
       </ViewDialog>
     );
   }
 }
 
 CoursesAdd.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  createCourse: PropTypes.func,
+  status: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({
+  status: selectStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
+    createCourse: (schoolID, course) => dispatch(createCourse(schoolID, course)),
     dispatch,
   };
 }

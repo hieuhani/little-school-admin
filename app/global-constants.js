@@ -1,0 +1,10 @@
+const REQUEST_STATUS = {
+  INITIAL: 0,
+  REQUESTING: 1,
+  SUCCEEDED: 2,
+  FAILED: 3,
+};
+
+export {
+  REQUEST_STATUS,
+};

@@ -6,15 +6,26 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GET_COURSES_SUCCESS,
 } from './constants';
 
-const initialState = fromJS({});
+import {
+  CREATE_COURSE_SUCCESS,
+} from '../CoursesAdd/constants';
+
+const initialState = fromJS({
+  courses: [],
+});
 
 function coursesReducer(state = initialState, action) {
-  switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+  const { type, payload } = action;
+  switch (type) {
+    case GET_COURSES_SUCCESS:
+      return state
+        .set('courses', fromJS(payload));
+    case CREATE_COURSE_SUCCESS:
+      return state
+        .set('courses', state.get('courses').push(fromJS(payload)));
     default:
       return state;
   }

@@ -1,25 +1,11 @@
 import { createSelector } from 'reselect';
-
-/**
- * Direct selector to the courses state domain
- */
 const selectCoursesDomain = () => (state) => state.get('courses');
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by Courses
- */
-
-const makeSelectCourses = () => createSelector(
+const selectCourses = () => createSelector(
   selectCoursesDomain(),
-  (substate) => substate.toJS()
+  (subState) => subState.get('courses')
 );
 
-export default makeSelectCourses;
 export {
-  selectCoursesDomain,
+  selectCourses,
 };
