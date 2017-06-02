@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import ViewCourseHeader from '../../components/ViewCourseHeader';
 import ViewUnitList from '../../components/ViewUnitList';
 
-export class Course extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class Units extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
     const { courseId } = this.props.params;
     console.log(courseId); // eslint-disable-line no-console
@@ -16,13 +16,15 @@ export class Course extends React.PureComponent { // eslint-disable-line react/p
       <div>
         <ViewCourseHeader />
         <ViewUnitList />
+        {this.props.children}
       </div>
     );
   }
 }
 
-Course.propTypes = {
+Units.propTypes = {
   params: PropTypes.object,
+  children: PropTypes.node,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -34,4 +36,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Course);
+export default connect(mapStateToProps, mapDispatchToProps)(Units);

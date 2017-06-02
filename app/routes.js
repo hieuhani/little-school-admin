@@ -57,8 +57,7 @@ export default function createRoutes(store) {
           childRoutes: [
             {
               path: '/courses/add',
-              name: 'add_courses',
-              mode: 'modal',
+              name: 'add_course',
               getComponent(nextState, cb) {
                 const importModules = Promise.all([
                   import('containers/CoursesAdd/sagas'),
@@ -78,12 +77,12 @@ export default function createRoutes(store) {
           ],
         },
         {
-          path: '/courses/:courseId',
-          name: 'courses',
+          path: '/courses/:courseId/units',
+          name: 'units',
           getComponent(nextState, cb) {
             const importModules = Promise.all([
-              import('containers/Course/sagas'),
-              import('containers/Course'),
+              import('containers/Units/sagas'),
+              import('containers/Units'),
             ]);
 
             const renderRoute = loadModule(cb);
@@ -95,6 +94,27 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          childRoutes: [
+            {
+              path: '/courses/:courseId/units/add',
+              name: 'add_unit',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/UnitsAdd/sagas'),
+                  import('containers/UnitsAdd'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([unitsSagas, component]) => {
+                  injectSagas(unitsSagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
+          ],
         },
         {
           path: '/courses/:courseId/units/:unitId',

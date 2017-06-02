@@ -12,11 +12,12 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import loginReducer from 'containers/Login/reducer';
 import authenticationReducer from 'containers/Authentication/reducer';
 import coursesReducer from 'containers/Courses/reducer';
-import courseReducer from 'containers/Course/reducer';
+import unitsReducer from 'containers/Units/reducer';
 import unitReducer from 'containers/Unit/reducer';
 import classesReducer from 'containers/Classes/reducer';
 import navigationBarReducer from 'containers/NavigationBar/reducer';
 import coursesAddReducer from 'containers/CoursesAdd/reducer';
+import unitsAddReducer from 'containers/UnitsAdd/reducer';
 
 /*
  * routeReducer
@@ -57,11 +58,12 @@ export default function createReducer(asyncReducers) {
     login: loginReducer,
     authentication: authenticationReducer,
     courses: coursesReducer,
-    course: courseReducer,
+    units: unitsReducer,
     unit: unitReducer,
     classes: classesReducer,
     navigationBar: navigationBarReducer,
     coursesAdd: coursesAddReducer,
+    unitsAdd: unitsAddReducer,
     ...asyncReducers,
   });
 }

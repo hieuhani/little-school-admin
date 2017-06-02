@@ -1,0 +1,31 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import ViewDialog from '../../components/ViewDialog';
+import ViewDialogHeader from '../../components/ViewDialogHeader';
+
+export class UnitsAdd extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    return (
+      <ViewDialog header={<ViewDialogHeader title="Add new unit" />}>
+        FormAddUnit
+      </ViewDialog>
+    );
+  }
+}
+
+UnitsAdd.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnitsAdd);

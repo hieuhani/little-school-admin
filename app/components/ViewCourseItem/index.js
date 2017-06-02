@@ -9,7 +9,7 @@ import './styles.scss';
 function ViewCourseItem({ course }) {
   return (
     <div className="view-course-item col-md-3">
-      <Link to={`/courses/${course.get('id')}`}>
+      <Link to={`/courses/${course.get('id')}/units`}>
         <Card>
           <CardTitle title={course.get('name')} subtitle={course.get('description')} />
         </Card>
