@@ -93,7 +93,7 @@ function ViewUnitDetail() {
                 <RaisedButton
                   href="https://github.com/callemall/material-ui"
                   target="_blank"
-                  label="Add a new vocabulary"
+                  label="Add vocabulary"
                   icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
                   style={{ float: 'right' }}
                   backgroundColor={green500}

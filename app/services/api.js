@@ -43,6 +43,15 @@ export const routes = {
       };
     },
   },
+  unit: {
+    create(schoolID, courseID, unit) {
+      return {
+        path: `/api/manager/schools/${schoolID}/courses/${courseID}/units`,
+        method: httpMethods.POST,
+        body: unit,
+      };
+    },
+  },
 };
 
 // function buildQueryString(obj = {}) {

@@ -22,8 +22,7 @@ function ViewCoursesHeader() {
         <div className="col-md-3 offset-3">
           <Link to="/courses/add">
             <RaisedButton
-              target="_blank"
-              label="Add a new course"
+              label="Add course"
               icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
               style={{ float: 'right' }}
               backgroundColor={green500}

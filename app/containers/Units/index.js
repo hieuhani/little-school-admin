@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import ViewCourseHeader from '../../components/ViewCourseHeader';
 import ViewUnitList from '../../components/ViewUnitList';
@@ -14,7 +15,7 @@ export class Units extends React.PureComponent { // eslint-disable-line react/pr
   render() {
     return (
       <div>
-        <ViewCourseHeader />
+        <ViewCourseHeader courseID={_.toInteger(this.props.params.courseId)} />
         <ViewUnitList />
         {this.props.children}
       </div>
