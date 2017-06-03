@@ -1,23 +1,30 @@
-/*
- *
- * Course reducer
- *
- */
-
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GET_UNITS_REQUEST,
+  GET_UNITS_SUCCESS,
+  GET_UNITS_ERROR,
 } from './constants';
 
-const initialState = fromJS({});
+import {
+  CREATE_UNIT_SUCCESS,
+} from '../UnitsAdd/constants';
 
-function courseReducer(state = initialState, action) {
-  switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+const initialState = fromJS({
+  units: [],
+});
+
+function unitsReducer(state = initialState, action) {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_UNITS_SUCCESS:
+      return state
+        .set('units', fromJS(payload));
+    case CREATE_UNIT_SUCCESS:
+      return state
+        .set('units', state.get('units').push(fromJS(payload)));
     default:
       return state;
   }
 }
 
-export default courseReducer;
+export default unitsReducer;

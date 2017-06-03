@@ -4,9 +4,6 @@ import Immutable from 'immutable';
 import { Card, CardMedia, CardTitle } from 'material-ui/Card';
 import { Link } from 'react-router';
 
-
-import './styles.scss';
-
 function ViewUnitItem({ unit }) {
   return (
     <div className="view-unit-item col-md-4 col-lg-3">
@@ -15,7 +12,7 @@ function ViewUnitItem({ unit }) {
           <CardMedia
             overlay={<CardTitle title={unit.get('name')} subtitle={unit.get('description')} />}
           >
-            <img src={unit.get('icon')} role="presentation" />
+            <img src={unit.get('cover')} role="presentation" />
           </CardMedia>
         </Card>
       </Link>

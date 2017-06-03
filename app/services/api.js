@@ -51,6 +51,12 @@ export const routes = {
         body: unit,
       };
     },
+    all(schoolID, courseID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/courses/${courseID}/units`,
+        method: httpMethods.GET,
+      };
+    },
   },
 };
 
