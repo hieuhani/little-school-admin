@@ -8,6 +8,7 @@ import ViewCourseHeader from '../../components/ViewCourseHeader';
 import ViewUnitList from '../../components/ViewUnitList';
 import {
   getUnits,
+  deleteUnit,
 } from './actions';
 import {
   selectUnits,
@@ -20,10 +21,14 @@ export class Units extends React.PureComponent {
   }
 
   render() {
+    const courseID = _.toInteger(this.props.params.courseId);
     return (
       <div>
         <ViewCourseHeader courseID={_.toInteger(this.props.params.courseId)} />
-        <ViewUnitList units={this.props.units} />
+        <ViewUnitList
+          units={this.props.units}
+          deleteUnit={(unitID) => this.props.deleteUnit(1, courseID, unitID)}
+        />
         {this.props.children}
       </div>
     );
@@ -34,6 +39,7 @@ Units.propTypes = {
   params: PropTypes.object,
   children: PropTypes.node,
   getUnits: PropTypes.func,
+  deleteUnit: PropTypes.func,
   units: PropTypes.instanceOf(Immutable.List),
 };
 
@@ -44,6 +50,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     getUnits: (schoolID, courseID) => dispatch(getUnits(schoolID, courseID)),
+    deleteUnit: (schoolID, courseID, unitID) => dispatch(deleteUnit(schoolID, courseID, unitID)),
     dispatch,
   };
 }

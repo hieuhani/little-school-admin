@@ -3,11 +3,14 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import {
   GET_UNITS_REQUEST,
+  DELETE_UNIT_REQUEST,
 } from './constants';
 import request, { routes } from '../../services/api';
 import {
   getUnitsSuccess,
   getUnitsError,
+  deleteUnitSuccess,
+  deleteUnitError,
 } from './actions';
 
 export function* getUnits({ payload }) {
@@ -25,6 +28,22 @@ export function* getUnitsWatcher() {
   yield cancel(watcher);
 }
 
+export function* deleteUnit({ payload }) {
+  const response = yield call(request, routes.unit.delete(payload.schoolID, payload.courseID, payload.unitID));
+  if (!response.error) {
+    yield put(deleteUnitSuccess(payload.unitID));
+  } else {
+    yield put(deleteUnitError(response));
+  }
+}
+
+export function* deleteUnitWatcher() {
+  const watcher = yield takeLatest(DELETE_UNIT_REQUEST, deleteUnit);
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
 export default [
   getUnitsWatcher,
+  deleteUnitWatcher,
 ];

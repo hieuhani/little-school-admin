@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-const baseAPIEndpoint = 'http://localhost:3000';
+const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
 
 export const httpMethods = {
   POST: 'POST',
@@ -57,6 +57,12 @@ export const routes = {
         method: httpMethods.GET,
       };
     },
+    delete(schoolID, courseID, unitID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/courses/${courseID}/units/${unitID}`,
+        method: httpMethods.DELETE,
+      };
+    },
   },
 };
 
@@ -77,6 +83,9 @@ export const routes = {
  * @return {object}          The parsed JSON from the request
  */
 function parseJSON(response) {
+  if (response.status === 204) {
+    return Promise.resolve();
+  }
   return response.json();
 }
 

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ViewUnitItem from '../ViewUnitItem';
 
-function ViewUnitList({ units }) {
+function ViewUnitList({ units, deleteUnit }) {
   return (
     <div className="view-unit-list row">
       {units.map((unit) => (
-        <ViewUnitItem key={unit.get('id')} unit={unit} />
+        <ViewUnitItem key={unit.get('id')} unit={unit} deleteUnit={() => deleteUnit(unit.get('id'))} />
       ))}
     </div>
   );
@@ -15,6 +15,7 @@ function ViewUnitList({ units }) {
 
 ViewUnitList.propTypes = {
   units: PropTypes.instanceOf(Immutable.List),
+  deleteUnit: PropTypes.func.isRequired,
 };
 
 export default ViewUnitList;
