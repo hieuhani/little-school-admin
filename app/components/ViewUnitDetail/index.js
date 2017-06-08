@@ -1,19 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import { white, green500, grey800 } from 'material-ui/styles/colors';
 import Immutable from 'immutable';
+import { Link } from 'react-router';
 import ViewVocabularyList from '../ViewVocabularyList';
 import './styles.scss';
-
-const unit = Immutable.fromJS({
-  id: 3,
-  name: 'Animals',
-  description: 'Colours of the life',
-  icon: 'https://image.freepik.com/free-vector/hand-drawn-happy-children-s-day-card_23-2147526572.jpg',
-  cover: 'http://www.contactnumbers.co.in/wp-content/uploads/2013/11/Happy-childrens-day-cards-2013.jpg',
-});
 
 const vocabularies = Immutable.fromJS([
   {
@@ -74,7 +68,7 @@ const vocabularies = Immutable.fromJS([
   },
 ]);
 
-function ViewUnitDetail() {
+function ViewUnitDetail({ unit, courseID }) {
   return (
     <div className="view-unit-detail">
       <div className="row">
@@ -90,15 +84,15 @@ function ViewUnitDetail() {
                 <span>{unit.get('description')}</span>
               </div>
               <div className="actions">
-                <RaisedButton
-                  href="https://github.com/callemall/material-ui"
-                  target="_blank"
-                  label="Add vocabulary"
-                  icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
-                  style={{ float: 'right' }}
-                  backgroundColor={green500}
-                  labelColor={white}
-                />
+                <Link to={`/courses/${courseID}/units/${unit.get('id')}/vocabularies/add`}>
+                  <RaisedButton
+                    label="Add vocabulary"
+                    icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
+                    style={{ float: 'right' }}
+                    backgroundColor={green500}
+                    labelColor={white}
+                  />
+                </Link>
               </div>
             </div>
           </Card>
@@ -124,7 +118,8 @@ const styles = {
 };
 
 ViewUnitDetail.propTypes = {
-
+  unit: PropTypes.instanceOf(Immutable.Map),
+  courseID: PropTypes.number,
 };
 
 export default ViewUnitDetail;

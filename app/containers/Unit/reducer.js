@@ -1,20 +1,22 @@
-/*
- *
- * Unit reducer
- *
- */
-
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GET_UNIT_REQUEST,
+  GET_UNIT_SUCCESS,
+  // GET_UNIT_ERROR,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  unit: {},
+});
 
 function unitReducer(state = initialState, action) {
-  switch (action.type) {
-    case DEFAULT_ACTION:
+  const { type, payload } = action;
+  switch (type) {
+    case GET_UNIT_REQUEST:
       return state;
+    case GET_UNIT_SUCCESS:
+      return state
+        .set('unit', fromJS(payload));
     default:
       return state;
   }

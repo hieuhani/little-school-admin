@@ -134,6 +134,27 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          childRoutes: [
+            {
+              path: '/courses/:courseId/units/:unitId/vocabularies/add',
+              name: 'add_vocabulary',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/VocabulariesAdd/sagas'),
+                  import('containers/VocabulariesAdd'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([unitsSagas, component]) => {
+                  injectSagas(unitsSagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
+          ],
         },
         {
           path: '/classes',
