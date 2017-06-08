@@ -7,6 +7,12 @@ const selectUnits = () => createSelector(
   (subState) => subState.get('units')
 );
 
+const selectDeleteStatus = () => createSelector(
+  selectUnitsDomain(),
+  (subState) => subState.get('deleteStatus')
+);
+
 export {
   selectUnits,
+  selectDeleteStatus,
 };

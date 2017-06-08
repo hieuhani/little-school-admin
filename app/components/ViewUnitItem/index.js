@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import { REQUEST_STATUS } from 'global-constants';
 import { Card, CardMedia, CardHeader } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import CircularProgress from 'material-ui/CircularProgress';
 import { Col } from 'reactstrap';
 import { Link } from 'react-router';
 
-function ViewUnitItem({ unit, deleteUnit }) {
+function ViewUnitItem({ unit, deleteUnit, deleteStatus }) {
   return (
     <Col xs="12" sm="6" md="4" lg="3">
       <Card>
@@ -25,13 +27,17 @@ function ViewUnitItem({ unit, deleteUnit }) {
         >
           <IconMenu
             iconButtonElement={
-              <IconButton><MoreVertIcon /></IconButton>
+              (deleteStatus === REQUEST_STATUS.REQUESTING) ? <CircularProgress size={30} /> : <IconButton><MoreVertIcon /></IconButton>
             }
             targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
             style={styles.buttonMore}
           >
-            <MenuItem primaryText="Delete" onTouchTap={deleteUnit} />
+            <MenuItem
+              primaryText="Delete"
+              onTouchTap={deleteUnit}
+              disabled={deleteStatus === REQUEST_STATUS.REQUESTING}
+            />
           </IconMenu>
         </CardHeader>
       </Card>
@@ -56,6 +62,7 @@ const styles = {
 ViewUnitItem.propTypes = {
   unit: PropTypes.instanceOf(Immutable.Map),
   deleteUnit: PropTypes.func.isRequired,
+  deleteStatus: PropTypes.number,
 };
 
 export default ViewUnitItem;

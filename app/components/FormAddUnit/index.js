@@ -45,9 +45,19 @@ class FormAddUnit extends React.PureComponent {
           />
         </StyledFormWrapper>
         <ViewBottomToolbar>
-          <ButtonFlat label="Cancel" onClick={this.props.cancelAddUnit} />
+          <ButtonFlat
+            label="Cancel"
+            onClick={this.props.cancelAddUnit}
+            disabled={this.props.status === REQUEST_STATUS.REQUESTING}
+          />
           <Spacer />
-          <ButtonFlat label="Add unit" highlighted type="submit" disabled={this.props.invalid || !this.props.iconFile || !this.props.coverFile || this.props.status === REQUEST_STATUS.REQUESTING} />
+          <ButtonFlat
+            label="Add unit"
+            highlighted
+            type="submit"
+            loading={this.props.status === REQUEST_STATUS.REQUESTING}
+            disabled={this.props.invalid || !this.props.iconFile || !this.props.coverFile || this.props.status === REQUEST_STATUS.REQUESTING}
+          />
         </ViewBottomToolbar>
       </form>
     );

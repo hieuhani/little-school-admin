@@ -12,6 +12,7 @@ import {
 } from './actions';
 import {
   selectUnits,
+  selectDeleteStatus,
 } from './selectors';
 
 export class Units extends React.PureComponent {
@@ -28,6 +29,7 @@ export class Units extends React.PureComponent {
         <ViewUnitList
           units={this.props.units}
           deleteUnit={(unitID) => this.props.deleteUnit(1, courseID, unitID)}
+          deleteStatus={this.props.deleteStatus}
         />
         {this.props.children}
       </div>
@@ -41,10 +43,12 @@ Units.propTypes = {
   getUnits: PropTypes.func,
   deleteUnit: PropTypes.func,
   units: PropTypes.instanceOf(Immutable.List),
+  deleteStatus: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({
   units: selectUnits(),
+  deleteStatus: selectDeleteStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
