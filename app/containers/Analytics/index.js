@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import ViewChartTotalUsers from '../../components/ViewChartTotalUsers';
 import ViewChartAppStatistics from '../../components/ViewChartAppStatistics';
+import ViewChartContentStatistics from '../../components/ViewChartContentStatistics';
 
 export class Analytics extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -10,6 +11,7 @@ export class Analytics extends React.PureComponent { // eslint-disable-line reac
       <div>
         <ViewChartTotalUsers />
         <ViewChartAppStatistics />
+        <ViewChartContentStatistics />
       </div>
     );
   }
