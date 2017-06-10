@@ -175,6 +175,25 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         },
+        {
+          path: '/analytics',
+          name: 'analytics',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Analytics/sagas'),
+              import('containers/Analytics'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([analyticsSagas, analyticsComponent]) => {
+              injectSagas(analyticsSagas.default);
+              renderRoute(analyticsComponent);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
       ],
     }, {
       path: '*',

@@ -69,7 +69,7 @@ const sidebarItems = [
     group: 'Statistics',
   },
   {
-    path: '/#',
+    path: '/analytics',
     text: 'Analytics',
     icon: <TrendingUp />,
   },
