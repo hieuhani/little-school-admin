@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Line } from 'react-chartjs';
+import { Line, Bar } from 'react-chartjs';
 import {
   Wrapper,
   Chart,
@@ -9,18 +9,6 @@ import {
 } from './styles';
 import themes from './themes';
 
-const chartData = {
-  labels: ['', '', '', '', '', ''],
-  datasets: [{
-    data: [12, 19, 3, 5, 2, 3],
-    borderWidth: 2,
-    lineTension: 0,
-    borderColor: '#FFF',
-    backgroundColor: 'transparent',
-    pointBackgroundColor: 'transparent',
-    pointBorderColor: 'transparent',
-  }],
-};
 const chartOptions = {
   legend: {
     display: false,
@@ -35,25 +23,49 @@ const chartOptions = {
   },
 };
 
+const generateChartData = ({ data, chartType }) => ({
+  labels: ['', '', '', '', '', ''],
+  datasets: [{
+    data,
+    borderWidth: 2,
+    lineTension: 0,
+    borderColor: chartType === 'bar' ? 'transparent' : 'white',
+    backgroundColor: chartType === 'line' ? 'transparent' : 'white',
+    pointBackgroundColor: 'transparent',
+    pointBorderColor: 'transparent',
+  }],
+});
 
-function ViewStatisticMetric({ theme }) {
+
+function ViewStatisticMetric({ metric: { theme, counter, chartType, data } }) {
+  let node;
+  switch (chartType) {
+    case 'bar':
+      node = <Bar width="100" data={generateChartData({ data, chartType })} options={chartOptions} />;
+      break;
+    case 'line':
+      node = <Line width="100" data={generateChartData({ data, chartType })} options={chartOptions} />;
+      break;
+    default:
+      break;
+  }
   return (
     <Wrapper>
       <ChartWrapper color={themes[theme].dark}>
         <Chart>
-          <Line width="100" data={chartData} options={chartOptions} />
+          {node}
         </Chart>
       </ChartWrapper>
       <Counter color={themes[theme].light}>
         <small>App Traffics</small>
-        <h2>983,456</h2>
+        <h2>{counter}</h2>
       </Counter>
     </Wrapper>
   );
 }
 
 ViewStatisticMetric.propTypes = {
-  theme: PropTypes.string,
+  metric: PropTypes.object,
 };
 
 export default ViewStatisticMetric;
