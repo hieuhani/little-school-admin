@@ -1,12 +1,13 @@
 import React from 'react';
 import { Bar } from 'react-chartjs';
+import ViewChartTitle from '../ViewChartTitle';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const chartData = () => ({
   labels: months,
   datasets: [
     {
-      label: 'Tổng số học sinh',
+      label: 'Total students',
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -50,11 +51,17 @@ const chartOptions = {
       stacked: true,
     }],
   },
+  legend: {
+    display: false,
+  },
 };
 
 function ViewChartTotalUsers() {
   return (
-    <Bar data={chartData([])} options={chartOptions} />
+    <div>
+      <ViewChartTitle title="Chart of Total Users" subTitle="Period: 2016 January to December" />
+      <Bar height="50" data={chartData([])} options={chartOptions} />
+    </div>
   );
 }
 
