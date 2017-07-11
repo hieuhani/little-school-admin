@@ -174,6 +174,27 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          childRoutes: [
+            {
+              path: '/classes/add',
+              name: 'add_class',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/ClassesAdd/sagas'),
+                  import('containers/ClassesAdd'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
+          ],
         },
         {
           path: '/analytics',

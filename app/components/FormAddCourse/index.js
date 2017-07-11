@@ -11,7 +11,7 @@ import validate from './validate';
 
 function FormAddCourse(props) {
   return (
-    <form onSubmit={props.handleSubmit} className="form-login">
+    <form onSubmit={props.handleSubmit}>
       <StyledFormWrapper>
         <Field name="name" type="text" component={FieldForm} label="Name" hintText="Course name" />
         <Field name="description" type="text" component={FieldForm} label="Description" hintText="Course description" multiLine />

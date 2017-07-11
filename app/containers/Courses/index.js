@@ -15,7 +15,7 @@ import {
 
 export class Courses extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    this.props.getCourses(1);
+    this.props.getCourses(1); // TODO: Hard code school
   }
 
   render() {

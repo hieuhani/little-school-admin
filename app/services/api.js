@@ -43,6 +43,15 @@ export const routes = {
       };
     },
   },
+  classroom: {
+    create(schoolID, classroom) {
+      return {
+        path: `/api/manager/schools/${schoolID}/courses/${classroom.get('course_id')}/classes`,
+        method: httpMethods.POST,
+        body: classroom.delete('course_id'),
+      };
+    },
+  },
   unit: {
     get(schoolID, courseID, unitID) {
       return {

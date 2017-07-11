@@ -20,6 +20,7 @@ import coursesAddReducer from 'containers/CoursesAdd/reducer';
 import unitsAddReducer from 'containers/UnitsAdd/reducer';
 import vocabulariesAddReducer from 'containers/VocabulariesAdd/reducer';
 import analyticsReducer from 'containers/Analytics/reducer';
+import classesAddReducer from 'containers/ClassesAdd/reducer';
 
 /*
  * routeReducer
@@ -68,6 +69,7 @@ export default function createReducer(asyncReducers) {
     unitsAdd: unitsAddReducer,
     vocabulariesAdd: vocabulariesAddReducer,
     analytics: analyticsReducer,
+    classesAdd: classesAddReducer,
     ...asyncReducers,
   });
 }
