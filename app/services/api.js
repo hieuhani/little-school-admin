@@ -57,6 +57,12 @@ export const routes = {
         method: httpMethods.GET,
       };
     },
+    students(schoolID, classID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}/students`,
+        method: httpMethods.GET,
+      };
+    },
   },
   unit: {
     get(schoolID, courseID, unitID) {

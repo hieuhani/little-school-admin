@@ -197,6 +197,46 @@ export default function createRoutes(store) {
           ],
         },
         {
+          path: '/classes/:classID',
+          name: 'units',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Classroom/sagas'),
+              import('containers/Classroom'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([sagas, component]) => {
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          childRoutes: [
+            {
+              path: '/classes/:classID/users/add',
+              name: 'add_class',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/ClassUsersAdd/sagas'),
+                  import('containers/ClassUsersAdd'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
+          ],
+        },
+        {
           path: '/analytics',
           name: 'analytics',
           getComponent(nextState, cb) {

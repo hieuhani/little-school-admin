@@ -10,6 +10,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router';
 
 
 function ViewTableClasses({ classes }) {
@@ -40,7 +41,9 @@ function ViewTableClasses({ classes }) {
               {classroom.getIn(['course', 'name'])}
             </TableRowColumn>
             <TableRowColumn>
-              <RaisedButton label="View" primary />
+              <Link to={`/classes/${classroom.get('id')}`}>
+                <RaisedButton label="View" primary />
+              </Link>
             </TableRowColumn>
           </TableRow>
         ))}
