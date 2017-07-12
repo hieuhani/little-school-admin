@@ -51,6 +51,12 @@ export const routes = {
         body: classroom.delete('course_id'),
       };
     },
+    all(schoolID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes`,
+        method: httpMethods.GET,
+      };
+    },
   },
   unit: {
     get(schoolID, courseID, unitID) {

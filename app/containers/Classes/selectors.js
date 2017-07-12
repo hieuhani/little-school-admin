@@ -1,25 +1,11 @@
 import { createSelector } from 'reselect';
-
-/**
- * Direct selector to the classes state domain
- */
 const selectClassesDomain = () => (state) => state.get('classes');
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by Classes
- */
-
-const makeSelectClasses = () => createSelector(
+const selectClasses = () => createSelector(
   selectClassesDomain(),
-  (substate) => substate.toJS()
+  (subState) => subState.get('classes')
 );
 
-export default makeSelectClasses;
 export {
-  selectClassesDomain,
+  selectClasses,
 };

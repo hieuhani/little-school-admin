@@ -6,15 +6,25 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GET_CLASSES_REQUEST,
+  GET_CLASSES_SUCCESS,
+  GET_CLASSES_ERROR,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  classes: [],
+  gettingClasses: false,
+});
 
 function classesReducer(state = initialState, action) {
-  switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+  const { type, payload } = action;
+  switch (type) {
+    case GET_CLASSES_REQUEST:
+      return state.set('gettingClasses', true);
+    case GET_CLASSES_SUCCESS:
+      return state.set('gettingClasses', false).set('classes', fromJS(payload));
+    case GET_CLASSES_ERROR:
+      return state.set('gettingClasses', false);
     default:
       return state;
   }

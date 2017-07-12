@@ -1,11 +1,30 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
-// Individual exports for testing
-export function* defaultSaga() {
-  // See example in containers/HomePage/sagas.js
+import {
+  GET_CLASSES_REQUEST,
+} from './constants';
+import request, { routes } from '../../services/api';
+import {
+  getClassesSuccess,
+  getClassesError,
+} from './actions';
+
+export function* getClasses({ payload }) {
+  const response = yield call(request, routes.classroom.all(payload.schoolID));
+  if (!response.error) {
+    yield put(getClassesSuccess(response.data));
+  } else {
+    yield put(getClassesError(response));
+  }
 }
 
-// All sagas to be loaded
+export function* getClassesWatcher() {
+  const watcher = yield takeLatest(GET_CLASSES_REQUEST, getClasses);
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
 export default [
-  defaultSaga,
+  getClassesWatcher,
 ];
