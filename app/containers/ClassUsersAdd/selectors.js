@@ -1,25 +1,23 @@
 import { createSelector } from 'reselect';
 
-/**
- * Direct selector to the classUsersAdd state domain
- */
 const selectClassUsersAddDomain = () => (state) => state.get('classUsersAdd');
-
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by ClassUsersAdd
- */
-
-const makeSelectClassUsersAdd = () => createSelector(
+const selectNotClassStudents = () => createSelector(
   selectClassUsersAddDomain(),
-  (substate) => substate.toJS()
+  (subState) => subState.get('notClassStudents')
 );
 
-export default makeSelectClassUsersAdd;
+const selectSelectedUserIds = () => createSelector(
+  selectClassUsersAddDomain(),
+  (subState) => subState.get('selectedUserIds')
+);
+
+const selectStatus = () => createSelector(
+  selectClassUsersAddDomain(),
+  (subState) => subState.get('status')
+);
+
 export {
-  selectClassUsersAddDomain,
+  selectNotClassStudents,
+  selectSelectedUserIds,
+  selectStatus,
 };

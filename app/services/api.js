@@ -63,6 +63,15 @@ export const routes = {
         method: httpMethods.GET,
       };
     },
+    addStudents(schoolID, classID, userIDs) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}/students`,
+        method: httpMethods.POST,
+        body: {
+          user_ids: userIDs,
+        },
+      };
+    },
   },
   unit: {
     get(schoolID, courseID, unitID) {
@@ -88,6 +97,14 @@ export const routes = {
       return {
         path: `/api/manager/schools/${schoolID}/courses/${courseID}/units/${unitID}`,
         method: httpMethods.DELETE,
+      };
+    },
+  },
+  user: {
+    notJoinToClass(schoolID, classID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/users?class_id=${classID}`,
+        method: httpMethods.GET,
       };
     },
   },
