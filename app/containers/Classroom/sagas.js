@@ -3,11 +3,14 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import {
   GET_CLASS_STUDENTS_REQUEST,
+  DELETE_CLASS_STUDENT_REQUEST,
 } from './constants';
 import request, { routes } from '../../services/api';
 import {
   getClassStudentsSuccess,
   getClassStudentsError,
+  removeClassStudentSuccess,
+  removeClassStudentError,
 } from './actions';
 
 export function* getClassStudents({ payload }) {
@@ -25,6 +28,22 @@ export function* getClassStudentsWatcher() {
   yield cancel(watcher);
 }
 
+export function* deleteClassStudent({ payload }) {
+  const response = yield call(request, routes.classroom.deleteStudent(payload.schoolID, payload.classID, payload.studentID));
+  if (!response.error) {
+    yield put(removeClassStudentSuccess(payload.studentID));
+  } else {
+    yield put(removeClassStudentError(response));
+  }
+}
+
+export function* deleteClassStudentWatcher() {
+  const watcher = yield takeLatest(DELETE_CLASS_STUDENT_REQUEST, deleteClassStudent);
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
 export default [
   getClassStudentsWatcher,
+  deleteClassStudentWatcher,
 ];

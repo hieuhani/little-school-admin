@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Immutable from 'immutable';
 import { createStructuredSelector } from 'reselect';
+import ViewTableStudents from '../../components/ViewTableStudents';
+import ViewClassroomHeader from '../../components/ViewClassroomHeader';
 import {
   getClassStudents,
+  removeClassStudent,
 } from './actions';
+import {
+  selectStudents,
+  selectGettingStudents,
+  selectDeletingStudent,
+} from './selectors';
 
 export class Classroom extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
@@ -13,7 +22,12 @@ export class Classroom extends React.PureComponent { // eslint-disable-line reac
   render() {
     return (
       <div>
-        Classroom
+        <ViewClassroomHeader classID={this.props.params.classID} />
+        <ViewTableStudents
+          students={this.props.students}
+          handleRemoveStudent={(studentID) => this.props.removeClassStudent(1, this.props.params.classID, studentID)}
+          deletingStudent={this.props.deletingStudent}
+        />
         {this.props.children}
       </div>
     );
@@ -22,16 +36,23 @@ export class Classroom extends React.PureComponent { // eslint-disable-line reac
 
 Classroom.propTypes = {
   getClassStudents: PropTypes.func,
+  removeClassStudent: PropTypes.func,
   params: PropTypes.object,
   children: PropTypes.node,
+  deletingStudent: PropTypes.bool,
+  students: PropTypes.instanceOf(Immutable.List),
 };
 
 const mapStateToProps = createStructuredSelector({
+  students: selectStudents(),
+  gettingStudents: selectGettingStudents(),
+  deletingStudent: selectDeletingStudent(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     getClassStudents: (schoolID, classID) => dispatch(getClassStudents(schoolID, classID)),
+    removeClassStudent: (schoolID, classID, studentID) => dispatch(removeClassStudent(schoolID, classID, studentID)),
     dispatch,
   };
 }

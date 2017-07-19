@@ -1,25 +1,24 @@
 import { createSelector } from 'reselect';
 
-/**
- * Direct selector to the classroom state domain
- */
 const selectClassroomDomain = () => (state) => state.get('classroom');
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by Classroom
- */
-
-const makeSelectClassroom = () => createSelector(
+const selectStudents = () => createSelector(
   selectClassroomDomain(),
-  (substate) => substate.toJS()
+  (subState) => subState.get('students')
 );
 
-export default makeSelectClassroom;
+const selectGettingStudents = () => createSelector(
+  selectClassroomDomain(),
+  (subState) => subState.get('gettingStudents')
+);
+
+const selectDeletingStudent = () => createSelector(
+  selectClassroomDomain(),
+  (subState) => subState.get('deletingStudent')
+);
+
 export {
-  selectClassroomDomain,
+  selectStudents,
+  selectGettingStudents,
+  selectDeletingStudent,
 };

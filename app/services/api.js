@@ -72,6 +72,12 @@ export const routes = {
         },
       };
     },
+    deleteStudent(schoolID, classID, studentID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}/students/${studentID}`,
+        method: httpMethods.DELETE,
+      };
+    },
   },
   unit: {
     get(schoolID, courseID, unitID) {

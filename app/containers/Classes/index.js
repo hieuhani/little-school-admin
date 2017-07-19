@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import ViewTableClasses from '../../components/ViewTableClasses';
+import ViewClassesHeader from '../../components/ViewClassesHeader';
 import {
   getClasses,
 } from './actions';
@@ -18,6 +19,7 @@ export class Classes extends React.PureComponent { // eslint-disable-line react/
   render() {
     return (
       <div>
+        <ViewClassesHeader />
         <ViewTableClasses classes={this.props.classes} />
         {this.props.children}
       </div>

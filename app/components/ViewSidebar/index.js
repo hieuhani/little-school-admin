@@ -80,7 +80,7 @@ function ViewSidebar(props) {
     <aside className="view-sidebar">
       <div className="top-spacing" />
       <div className="user">
-        <img className="avatar" src="http://www.iconsfind.com/wp-content/uploads/2015/08/20150831_55e46ad551392.png" role="presentation" />
+        <img className="avatar" src="https://avatars1.githubusercontent.com/u/4966345?v=4&s=460" role="presentation" />
         <div className="info">
           <h3 className="name">David Moye</h3>
           <p className="title">School Manager</p>

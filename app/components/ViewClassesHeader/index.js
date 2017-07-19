@@ -6,21 +6,21 @@ import { white, green500 } from 'material-ui/styles/colors';
 import { Link } from 'react-router';
 import ViewIconTextField from '../ViewIconTextField';
 
-function ViewCoursesHeader() {
+function ViewClassesHeader() {
   return (
     <div className="view-courses-header">
       <div className="row">
         <div className="col-md-3">
           <TextField
-            hintText={<ViewIconTextField icon="search" text="Search by course name" />}
+            hintText={<ViewIconTextField icon="search" text="Search class" />}
           />
         </div>
         <div className="col-md-3">
         </div>
         <div className="col-md-3 offset-3">
-          <Link to="/courses/add">
+          <Link to="/classes/add">
             <RaisedButton
-              label="Add course"
+              label="Create new class"
               icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
               style={{ float: 'right' }}
               backgroundColor={green500}
@@ -33,8 +33,5 @@ function ViewCoursesHeader() {
   );
 }
 
-ViewCoursesHeader.propTypes = {
 
-};
-
-export default ViewCoursesHeader;
+export default ViewClassesHeader;
