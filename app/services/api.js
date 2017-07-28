@@ -113,6 +113,13 @@ export const routes = {
         method: httpMethods.GET,
       };
     },
+    create(schoolID, user) {
+      return {
+        path: `/api/manager/schools/${schoolID}/users`,
+        method: httpMethods.POST,
+        body: user,
+      };
+    },
   },
 };
 

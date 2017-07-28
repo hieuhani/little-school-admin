@@ -197,6 +197,46 @@ export default function createRoutes(store) {
           ],
         },
         {
+          path: '/accounts',
+          name: 'accounts',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/Accounts/sagas'),
+              import('containers/Accounts'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([accountsSagas, accountsComponent]) => {
+              injectSagas(accountsSagas.default);
+              renderRoute(accountsComponent);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          childRoutes: [
+            {
+              path: '/accounts/add',
+              name: 'add_account',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/AccountsAdd/sagas'),
+                  import('containers/AccountsAdd'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
+          ],
+        },
+        {
           path: '/classes/:classID',
           name: 'units',
           getComponent(nextState, cb) {

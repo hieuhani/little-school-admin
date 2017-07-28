@@ -1,0 +1,3 @@
+export const CREATE_ACCOUNT_REQUEST = 'app/AccountsAdd/CREATE_ACCOUNT_REQUEST';
+export const CREATE_ACCOUNT_SUCCESS = 'app/AccountsAdd/CREATE_ACCOUNT_SUCCESS';
+export const CREATE_ACCOUNT_ERROR = 'app/AccountsAdd/CREATE_ACCOUNT_ERROR';
