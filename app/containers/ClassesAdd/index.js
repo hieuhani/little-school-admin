@@ -16,10 +16,13 @@ import {
   getCourses,
   createClass,
 } from './actions';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class ClassesAdd extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    this.props.getCourses(1); // TODO: Hard code school
+    this.props.getCourses(this.props.defaultSchool);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.status === REQUEST_STATUS.REQUESTING && nextProps.status === REQUEST_STATUS.SUCCEEDED) {
@@ -35,7 +38,7 @@ export class ClassesAdd extends React.PureComponent { // eslint-disable-line rea
     return (
       <ViewDialog header={<ViewDialogHeader title="Add new class" />}>
         <FormAddClass
-          onSubmit={(course) => this.props.createClass(1, course)}
+          onSubmit={(course) => this.props.createClass(this.props.defaultSchool, course)}
           courses={this.props.courses}
           cancelAddClass={this.closeForm}
           status={this.props.status}
@@ -50,11 +53,13 @@ ClassesAdd.propTypes = {
   createClass: PropTypes.func,
   courses: PropTypes.instanceOf(Immutable.List),
   status: PropTypes.number,
+  defaultSchool: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   courses: selectCourses(),
   status: selectStatus(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

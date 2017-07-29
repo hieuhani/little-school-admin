@@ -1,20 +1,17 @@
-/*
- *
- * Dashboard reducer
- *
- */
-
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  CHECK_DEFAULT_SCHOOL,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  defaultSchool: undefined,
+});
 
 function dashboardReducer(state = initialState, action) {
-  switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+  const { type, payload } = action;
+  switch (type) {
+    case CHECK_DEFAULT_SCHOOL:
+      return state.set('defaultSchool', payload.defaultSchool);
     default:
       return state;
   }

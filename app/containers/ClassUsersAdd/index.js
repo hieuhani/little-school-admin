@@ -21,19 +21,23 @@ import {
   selectSelectedUserIds,
   selectStatus,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class ClassUsersAdd extends React.PureComponent {
   componentWillMount() {
-    this.props.getNotStudentsOfClass(1, this.props.params.classID);
+    this.props.getNotStudentsOfClass(this.props.defaultSchool, this.props.params.classID);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.status === REQUEST_STATUS.REQUESTING && nextProps.status === REQUEST_STATUS.SUCCEEDED) {
-      this.props.getNotStudentsOfClass(1, this.props.params.classID);
+      this.props.getNotStudentsOfClass(this.props.defaultSchool, this.props.params.classID);
     }
   }
 
   closeForm() {
     browserHistory.push(`/classes/${this.props.params.classID}`);
+    window.location.reload();
   }
 
   render() {
@@ -51,7 +55,7 @@ export class ClassUsersAdd extends React.PureComponent {
             highlighted
             type="button"
             disabled={this.props.selectedUserIds.size === 0}
-            onClick={() => this.props.postAddUsersToClass(1, this.props.params.classID, this.props.selectedUserIds)}
+            onClick={() => this.props.postAddUsersToClass(this.props.defaultSchool, this.props.params.classID, this.props.selectedUserIds)}
           />
         </ViewBottomToolbar>
       </ViewDialog>
@@ -71,12 +75,14 @@ ClassUsersAdd.propTypes = {
   notClassStudents: PropTypes.instanceOf(Immutable.List),
   selectedUserIds: PropTypes.instanceOf(Immutable.List),
   postAddUsersToClass: PropTypes.func,
+  defaultSchool: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   notClassStudents: selectNotClassStudents(),
   selectedUserIds: selectSelectedUserIds(),
   status: selectStatus(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -16,6 +16,9 @@ import {
   selectStatus,
   selectError,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class AccountsAdd extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillReceiveProps(nextProps) {
@@ -25,12 +28,13 @@ export class AccountsAdd extends React.PureComponent { // eslint-disable-line re
   }
   closeForm() {
     browserHistory.push('/accounts');
+    window.location.reload();
   }
   render() {
     return (
       <ViewDialog header={<ViewDialogHeader title="Add new user" />}>
         <FormAddAccount
-          onSubmit={(user) => this.props.createAccount(1, user)}
+          onSubmit={(user) => this.props.createAccount(this.props.defaultSchool, user)}
           cancelAddAccount={this.closeForm}
           status={this.props.status}
           error={this.props.error}
@@ -43,12 +47,14 @@ export class AccountsAdd extends React.PureComponent { // eslint-disable-line re
 AccountsAdd.propTypes = {
   createAccount: PropTypes.func,
   status: PropTypes.number,
+  defaultSchool: PropTypes.string,
   error: PropTypes.instanceOf(Immutable.Map),
 };
 
 const mapStateToProps = createStructuredSelector({
   status: selectStatus(),
   error: selectError(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

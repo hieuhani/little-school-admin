@@ -127,6 +127,14 @@ export const routes = {
       };
     },
   },
+  me: {
+    ownSchools() {
+      return {
+        path: '/api/me/schools',
+        method: httpMethods.GET,
+      };
+    },
+  },
 };
 
 function buildQueryString(obj = {}) {

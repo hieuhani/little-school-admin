@@ -1,25 +1,12 @@
 import { createSelector } from 'reselect';
 
-/**
- * Direct selector to the dashboard state domain
- */
 const selectDashboardDomain = () => (state) => state.get('dashboard');
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by Dashboard
- */
-
-const makeSelectDashboard = () => createSelector(
+const selectDefaultSchool = () => createSelector(
   selectDashboardDomain(),
-  (substate) => substate.toJS()
+  (subState) => subState.get('defaultSchool')
 );
 
-export default makeSelectDashboard;
 export {
-  selectDashboardDomain,
+  selectDefaultSchool,
 };

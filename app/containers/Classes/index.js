@@ -11,10 +11,13 @@ import {
 import {
   selectClasses,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class Classes extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    this.props.getClasses(1);
+    this.props.getClasses(this.props.defaultSchool);
   }
   render() {
     return (
@@ -30,11 +33,13 @@ export class Classes extends React.PureComponent { // eslint-disable-line react/
 Classes.propTypes = {
   children: PropTypes.node,
   getClasses: PropTypes.func,
+  defaultSchool: PropTypes.string,
   classes: PropTypes.instanceOf(Immutable.List),
 };
 
 const mapStateToProps = createStructuredSelector({
   classes: selectClasses(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

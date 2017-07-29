@@ -14,11 +14,14 @@ import {
   selectUnits,
   selectDeleteStatus,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class Units extends React.PureComponent {
   componentWillMount() {
     const { courseId } = this.props.params;
-    this.props.getUnits(1, courseId);
+    this.props.getUnits(this.props.defaultSchool, courseId);
   }
 
   render() {
@@ -28,7 +31,7 @@ export class Units extends React.PureComponent {
         <ViewCourseHeader courseID={_.toInteger(this.props.params.courseId)} />
         <ViewUnitList
           units={this.props.units}
-          deleteUnit={(unitID) => this.props.deleteUnit(1, courseID, unitID)}
+          deleteUnit={(unitID) => this.props.deleteUnit(this.props.defaultSchool, courseID, unitID)}
           deleteStatus={this.props.deleteStatus}
         />
         {this.props.children}
@@ -44,11 +47,13 @@ Units.propTypes = {
   deleteUnit: PropTypes.func,
   units: PropTypes.instanceOf(Immutable.List),
   deleteStatus: PropTypes.number,
+  defaultSchool: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   units: selectUnits(),
   deleteStatus: selectDeleteStatus(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

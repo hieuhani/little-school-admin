@@ -14,10 +14,13 @@ import {
   selectGettingStudents,
   selectDeletingStudent,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class Classroom extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    this.props.getClassStudents(1, this.props.params.classID);
+    this.props.getClassStudents(this.props.defaultSchool, this.props.params.classID);
   }
   render() {
     return (
@@ -25,7 +28,7 @@ export class Classroom extends React.PureComponent { // eslint-disable-line reac
         <ViewClassroomHeader classID={this.props.params.classID} />
         <ViewTableStudents
           students={this.props.students}
-          handleRemoveStudent={(studentID) => this.props.removeClassStudent(1, this.props.params.classID, studentID)}
+          handleRemoveStudent={(studentID) => this.props.removeClassStudent(this.props.defaultSchool, this.props.params.classID, studentID)}
           deletingStudent={this.props.deletingStudent}
         />
         {this.props.children}
@@ -38,6 +41,7 @@ Classroom.propTypes = {
   getClassStudents: PropTypes.func,
   removeClassStudent: PropTypes.func,
   params: PropTypes.object,
+  defaultSchool: PropTypes.string,
   children: PropTypes.node,
   deletingStudent: PropTypes.bool,
   students: PropTypes.instanceOf(Immutable.List),
@@ -47,6 +51,7 @@ const mapStateToProps = createStructuredSelector({
   students: selectStudents(),
   gettingStudents: selectGettingStudents(),
   deletingStudent: selectDeletingStudent(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

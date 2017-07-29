@@ -15,6 +15,9 @@ import {
 import {
   createCourse,
 } from './actions';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class CoursesAdd extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
@@ -31,7 +34,7 @@ export class CoursesAdd extends React.PureComponent {
     return (
       <ViewDialog header={<ViewDialogHeader title="Add new course" />}>
         <FormAddCourse
-          onSubmit={(course) => this.props.createCourse(1, course)}
+          onSubmit={(course) => this.props.createCourse(this.props.defaultSchool, course)}
           cancelAddCourse={this.closeForm}
           status={this.props.status}
         />
@@ -43,10 +46,12 @@ export class CoursesAdd extends React.PureComponent {
 CoursesAdd.propTypes = {
   createCourse: PropTypes.func,
   status: PropTypes.number,
+  defaultSchool: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   status: selectStatus(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

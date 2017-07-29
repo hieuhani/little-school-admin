@@ -1,15 +1,14 @@
-/*
- *
- * Dashboard actions
- *
- */
-
+import { DEFAULT_SCHOOL_KEY } from 'config';
 import {
-  DEFAULT_ACTION,
+  CHECK_DEFAULT_SCHOOL,
 } from './constants';
 
-export function defaultAction() {
+export function checkDefaultSchool() {
+  const defaultSchool = window.localStorage.getItem(DEFAULT_SCHOOL_KEY);
   return {
-    type: DEFAULT_ACTION,
+    type: CHECK_DEFAULT_SCHOOL,
+    payload: {
+      defaultSchool,
+    },
   };
 }

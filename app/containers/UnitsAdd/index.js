@@ -13,6 +13,9 @@ import {
 import {
   selectStatus,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class UnitsAdd extends React.PureComponent {
   constructor(props) {
@@ -33,7 +36,7 @@ export class UnitsAdd extends React.PureComponent {
       <ViewDialog header={<ViewDialogHeader title="Add new unit" />}>
         <FormAddUnit
           cancelAddUnit={this.closeForm}
-          onSubmit={(formValues) => this.props.createUnit(1, this.props.params.courseId, formValues)}
+          onSubmit={(formValues) => this.props.createUnit(this.props.defaultSchool, this.props.params.courseId, formValues)}
           status={this.props.status}
         />
       </ViewDialog>
@@ -45,10 +48,12 @@ UnitsAdd.propTypes = {
   params: PropTypes.object,
   createUnit: PropTypes.func,
   status: PropTypes.number,
+  defaultSchool: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   status: selectStatus(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

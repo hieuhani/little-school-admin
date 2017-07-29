@@ -1,7 +1,1 @@
-/*
- *
- * Dashboard constants
- *
- */
-
-export const DEFAULT_ACTION = 'app/Dashboard/DEFAULT_ACTION';
+export const CHECK_DEFAULT_SCHOOL = 'app/Dashboard/CHECK_DEFAULT_SCHOOL';

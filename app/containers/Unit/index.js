@@ -10,11 +10,14 @@ import {
 import {
   selectUnit,
 } from './selectors';
+import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
 
 export class Unit extends React.PureComponent {
   componentWillMount() {
     const { unitId, courseId } = this.props.params;
-    this.props.getUnit(1, courseId, unitId);
+    this.props.getUnit(this.props.defaultSchool, courseId, unitId);
   }
 
   render() {
@@ -32,10 +35,12 @@ Unit.propTypes = {
   getUnit: PropTypes.func,
   unit: PropTypes.instanceOf(Immutable.Map),
   children: PropTypes.node,
+  defaultSchool: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   unit: selectUnit(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {
