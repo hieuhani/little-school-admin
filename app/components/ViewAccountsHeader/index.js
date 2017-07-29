@@ -1,14 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import { white, green500 } from 'material-ui/styles/colors';
 import { Link } from 'react-router';
+import FormSearchUser from '../FormSearchUser';
 
-function ViewAccountsHeader() {
+
+function ViewAccountsHeader({ handleSearchUser }) {
   return (
     <div className="view-courses-header">
       <div className="row">
-        <div className="col-md-3" />
+        <div className="col-md-3">
+          <FormSearchUser onSubmit={(values) => handleSearchUser(values.get('username'))} />
+        </div>
         <div className="col-md-3" />
         <div className="col-md-3 offset-3">
           <Link to="/accounts/add">
@@ -26,5 +31,8 @@ function ViewAccountsHeader() {
   );
 }
 
+ViewAccountsHeader.propTypes = {
+  handleSearchUser: PropTypes.func,
+};
 
 export default ViewAccountsHeader;

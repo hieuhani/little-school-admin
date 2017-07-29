@@ -15,14 +15,18 @@ function ViewUsersSelector({ users, handleSelectUser }) {
     <Table onRowSelection={handleSelectUser} multiSelectable>
       <TableHeader>
         <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
+          <TableHeaderColumn>Username</TableHeaderColumn>
+          <TableHeaderColumn>First Name</TableHeaderColumn>
+          <TableHeaderColumn>Last Name</TableHeaderColumn>
           <TableHeaderColumn>Email</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.get('id')}>
-            <TableRowColumn>{user.get('id')}</TableRowColumn>
+            <TableRowColumn>{user.get('username')}</TableRowColumn>
+            <TableRowColumn>{user.get('first_name')}</TableRowColumn>
+            <TableRowColumn>{user.get('last_name')}</TableRowColumn>
             <TableRowColumn>{user.get('email')}</TableRowColumn>
           </TableRow>
         ))}

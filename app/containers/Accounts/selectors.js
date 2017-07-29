@@ -1,25 +1,30 @@
 import { createSelector } from 'reselect';
 
-/**
- * Direct selector to the accounts state domain
- */
 const selectAccountsDomain = () => (state) => state.get('accounts');
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by Accounts
- */
-
-const makeSelectAccounts = () => createSelector(
+const selectCurrentPage = () => createSelector(
   selectAccountsDomain(),
-  (substate) => substate.toJS()
+  (subState) => subState.get('page')
 );
 
-export default makeSelectAccounts;
+const selectCount = () => createSelector(
+  selectAccountsDomain(),
+  (subState) => subState.get('count')
+);
+
+const selectUsers = () => createSelector(
+  selectAccountsDomain(),
+  (subState) => subState.get('users')
+);
+
+const selectSize = () => createSelector(
+  selectAccountsDomain(),
+  (subState) => subState.get('per_page')
+);
+
 export {
-  selectAccountsDomain,
+  selectCurrentPage,
+  selectCount,
+  selectUsers,
+  selectSize,
 };

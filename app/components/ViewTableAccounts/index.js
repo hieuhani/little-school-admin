@@ -9,46 +9,37 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import RaisedButton from 'material-ui/RaisedButton';
+import ViewStudyingClasses from '../ViewStudyingClasses';
 
-function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
+function ViewTableAccounts({ accounts }) {
   return (
     <Table>
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
           <TableHeaderColumn>Username</TableHeaderColumn>
           <TableHeaderColumn>First Name</TableHeaderColumn>
           <TableHeaderColumn>Last Name</TableHeaderColumn>
           <TableHeaderColumn>Email</TableHeaderColumn>
-          <TableHeaderColumn />
+          <TableHeaderColumn>Studying classes</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
-        {students.map((student) => (
-          <TableRow key={student.get('id')}>
+        {accounts.map((account) => (
+          <TableRow key={account.get('id')}>
             <TableRowColumn>
-              {student.get('id')}
+              {account.get('username')}
             </TableRowColumn>
             <TableRowColumn>
-              {student.get('username')}
+              {account.get('first_name')}
             </TableRowColumn>
             <TableRowColumn>
-              {student.get('first_name')}
+              {account.get('last_name')}
             </TableRowColumn>
             <TableRowColumn>
-              {student.get('last_name')}
+              {account.get('email')}
             </TableRowColumn>
             <TableRowColumn>
-              {student.get('email')}
-            </TableRowColumn>
-            <TableRowColumn>
-              <RaisedButton
-                label="Remove"
-                secondary
-                onTouchTap={() => handleRemoveStudent(student.get('id'))}
-                disabled={deletingStudent}
-              />
+              <ViewStudyingClasses classrooms={account.get('classrooms')} />
             </TableRowColumn>
           </TableRow>
         ))}
@@ -57,10 +48,8 @@ function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
   );
 }
 
-ViewTableStudents.propTypes = {
-  students: PropTypes.instanceOf(Immutable.List),
-  handleRemoveStudent: PropTypes.func,
-  deletingStudent: PropTypes.bool,
+ViewTableAccounts.propTypes = {
+  accounts: PropTypes.instanceOf(Immutable.List),
 };
 
-export default ViewTableStudents;
+export default ViewTableAccounts;

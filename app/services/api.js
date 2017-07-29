@@ -120,17 +120,23 @@ export const routes = {
         body: user,
       };
     },
+    all(page, size) {
+      return {
+        path: `/api/admin/users?${buildQueryString({ page, per_page: size })}`,
+        method: httpMethods.GET,
+      };
+    },
   },
 };
 
-// function buildQueryString(obj = {}) {
-//   const qs = _.reduce(obj, (result, value, key) => (
-//     (!_.isNull(value) && !_.isUndefined(value))
-//       ? (result += `${key}=${value}&`) // eslint-disable-line no-param-reassign
-//       : result
-//   ), '').slice(0, -1);
-//   return qs;
-// }
+function buildQueryString(obj = {}) {
+  const qs = _.reduce(obj, (result, value, key) => (
+    (!_.isNull(value) && !_.isUndefined(value))
+      ? (result += `${key}=${value}&`) // eslint-disable-line no-param-reassign
+      : result
+  ), '').slice(0, -1);
+  return qs;
+}
 
 /**
  * Parses the JSON returned by a network request

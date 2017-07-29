@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router';
 import { white, green500 } from 'material-ui/styles/colors';
-import ViewIconTextField from '../ViewIconTextField';
 
 import './styles.scss';
 
@@ -14,9 +12,6 @@ function ViewCourseHeader({ courseID }) {
     <div className="view-course-header">
       <div className="row">
         <div className="col-md-3">
-          <TextField
-            hintText={<ViewIconTextField icon="search" text="Search by unit name" />}
-          />
         </div>
         <div className="col-md-3">
         </div>

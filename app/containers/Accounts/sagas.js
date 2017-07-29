@@ -1,11 +1,30 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
-// Individual exports for testing
-export function* defaultSaga() {
-  // See example in containers/HomePage/sagas.js
+import {
+  GET_ACCOUNTS_REQUEST,
+} from './constants';
+import request, { routes } from '../../services/api';
+import {
+  getAccountsSuccess,
+  getAccountsError,
+} from './actions';
+
+export function* getAccounts({ payload }) {
+  const response = yield call(request, routes.user.all(payload.page, payload.size));
+  if (!response.error) {
+    yield put(getAccountsSuccess(response.data));
+  } else {
+    yield put(getAccountsError(response));
+  }
 }
 
-// All sagas to be loaded
+export function* getAccountsWatcher() {
+  const watcher = yield takeLatest(GET_ACCOUNTS_REQUEST, getAccounts);
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
 export default [
-  defaultSaga,
+  getAccountsWatcher,
 ];
