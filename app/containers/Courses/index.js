@@ -10,12 +10,15 @@ import {
   selectCourses,
 } from './selectors';
 import {
+  selectDefaultSchool,
+} from '../Dashboard/selectors';
+import {
   getCourses,
 } from './actions';
 
 export class Courses extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    this.props.getCourses(1); // TODO: Hard code school
+    this.props.getCourses(this.props.defaultSchool);
   }
 
   render() {
@@ -32,11 +35,13 @@ export class Courses extends React.PureComponent { // eslint-disable-line react/
 Courses.propTypes = {
   getCourses: PropTypes.func,
   children: PropTypes.node,
+  defaultSchool: PropTypes.string,
   courses: PropTypes.instanceOf(Immutable.List),
 };
 
 const mapStateToProps = createStructuredSelector({
   courses: selectCourses(),
+  defaultSchool: selectDefaultSchool(),
 });
 
 function mapDispatchToProps(dispatch) {

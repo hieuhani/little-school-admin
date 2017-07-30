@@ -22,7 +22,7 @@ export function setAuthToken(token) {
  * @param payload
  */
 export function* postSignInByEmail({ payload }) {
-  const response = yield call(request, routes.exchangeToken(payload.email, payload.password));
+  const response = yield call(request, routes.exchangeToken(payload.username, payload.password));
   if (!response.error) {
     const authToken = _.get(response, 'data.token.encoded');
     if (authToken) {

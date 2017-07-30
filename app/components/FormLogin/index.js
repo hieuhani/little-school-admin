@@ -11,7 +11,7 @@ function FormLogin(props) {
   const { handleSubmit, invalid } = props;
   return (
     <form onSubmit={handleSubmit} className="form-login">
-      <Field name="email" type="text" component={FieldForm} label="Email" hintText="Enter your email" />
+      <Field name="username" type="text" component={FieldForm} label="Username" hintText="Enter your username" />
       <Field name="password" type="password" component={FieldForm} label="Password" hintText="Enter your password" />
       <div className="form-actions">
         <RaisedButton label="Sign in" primary onTouchTap={handleSubmit} disabled={invalid} type="submit" />

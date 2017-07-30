@@ -19,6 +19,7 @@ const styles = {
 function ViewPagination({ count, size, currentPage, handleSelectPage }) {
   if (count === 0) return null;
   const totalPage = Math.ceil(count / size);
+  if (totalPage === 1) return null;
   return (
     <PaginationWrapper>
       {_.map(_.times(totalPage), (page) => (

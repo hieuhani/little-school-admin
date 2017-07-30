@@ -14,16 +14,16 @@ export const httpMethods = {
 export const routes = {
   /**
    * Exchange token by email and password
-   * @param email
+   * @param username
    * @param password
-   * @returns {{path: string, method: string, body: {email: *, password: *}}}
+   * @returns {{path: string, method: string, body: {username: *, password: *}}}
    */
-  exchangeToken(email, password) {
+  exchangeToken(username, password) {
     return {
       path: '/api/tokens',
       method: httpMethods.POST,
       body: {
-        email,
+        username,
         password,
       },
     };
@@ -131,6 +131,21 @@ export const routes = {
     ownSchools() {
       return {
         path: '/api/me/schools',
+        method: httpMethods.GET,
+      };
+    },
+  },
+  school: {
+    create(body) {
+      return {
+        path: '/api/manager/schools',
+        method: httpMethods.POST,
+        body,
+      };
+    },
+    show(schoolID) {
+      return {
+        path: `/api/schools/${schoolID}`,
         method: httpMethods.GET,
       };
     },

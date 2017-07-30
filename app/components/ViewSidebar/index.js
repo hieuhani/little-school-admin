@@ -4,7 +4,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
-import SupervisorAccount from 'material-ui/svg-icons/action/supervisor-account';
+// import SupervisorAccount from 'material-ui/svg-icons/action/supervisor-account';
 import GroupAdd from 'material-ui/svg-icons/social/group-add';
 import School from 'material-ui/svg-icons/social/school';
 import LibraryBooks from 'material-ui/svg-icons/av/library-books';
@@ -43,14 +43,14 @@ const sidebarItems = [
   //   text: 'Test Bank',
   //   icon: <Assessment />,
   // },
-  {
-    group: 'Internal school',
-  },
-  {
-    path: '/#',
-    text: 'Staffs',
-    icon: <SupervisorAccount />,
-  },
+  // {
+  //   group: 'Internal school',
+  // },
+  // {
+  //   path: '/#',
+  //   text: 'Staffs',
+  //   icon: <SupervisorAccount />,
+  // },
   // {
   //   path: '/#',
   //   text: 'Announcements',

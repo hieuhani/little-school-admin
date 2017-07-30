@@ -10,6 +10,7 @@ import './styles.scss';
 import SchoolSelector from '../SchoolSelector';
 import {
   checkDefaultSchool,
+  getSchool,
 } from './actions';
 import {
   selectDefaultSchool,
@@ -20,8 +21,21 @@ export class Dashboard extends React.PureComponent { // eslint-disable-line reac
     this.props.checkDefaultSchool();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (typeof nextProps.defaultSchool === 'string' && !this.props.defaultSchool) {
+      this.props.getSchool(nextProps.defaultSchool);
+    }
+  }
+
   render() {
     if (this.props.defaultSchool === undefined) return null;
+    if (this.props.pathname === '/new_school') {
+      return (
+        <div>
+          {this.props.children}
+        </div>
+      );
+    }
     if (this.props.defaultSchool === null) {
       return (
         <SchoolSelector />
@@ -49,6 +63,7 @@ Dashboard.propTypes = {
   pathname: PropTypes.string,
   defaultSchool: PropTypes.string,
   checkDefaultSchool: PropTypes.func,
+  getSchool: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -58,6 +73,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     checkDefaultSchool: () => (dispatch(checkDefaultSchool())),
+    getSchool: (schoolID) => (dispatch(getSchool(schoolID))),
     dispatch,
   };
 }

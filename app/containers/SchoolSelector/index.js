@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router';
 import styled from 'styled-components';
 import { DEFAULT_SCHOOL_KEY } from 'config';
+import RaisedButton from 'material-ui/RaisedButton';
 import ViewSchoolsPicker from '../../components/ViewSchoolsPicker';
 
 import {
@@ -48,6 +50,9 @@ export class SchoolSelector extends React.PureComponent { // eslint-disable-line
           schools={this.props.schools}
           setDefaultSchool={this.setDefaultSchool}
         />
+        <Link to="/new_school">
+          <RaisedButton label="Create new school" fullWidth />
+        </Link>
       </Wrapper>
     );
   }

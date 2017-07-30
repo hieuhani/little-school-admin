@@ -7,6 +7,12 @@ const selectDefaultSchool = () => createSelector(
   (subState) => subState.get('defaultSchool')
 );
 
+const selectSchool = () => createSelector(
+  selectDashboardDomain(),
+  (subState) => subState.get('school')
+);
+
 export {
   selectDefaultSchool,
+  selectSchool,
 };

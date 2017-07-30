@@ -11,7 +11,7 @@ function ViewSchoolsPicker({ schools, setDefaultSchool }) {
           onTouchTap={() => setDefaultSchool(school.get('id'))}
           key={school.get('id')}
           primaryText={school.get('name')}
-          secondaryText={school.get('description')}
+          secondaryText={school.get('address')}
         />
       ))}
     </List>

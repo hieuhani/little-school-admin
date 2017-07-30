@@ -25,19 +25,40 @@ export default function createRoutes(store) {
           import('containers/Authentication'),
           import('containers/Login/sagas'),
           import('containers/SchoolSelector/sagas'),
+          import('containers/Dashboard/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([authenticationComponent, loginSagas, schoolSelectorSagas]) => {
+        importModules.then(([authenticationComponent, loginSagas, schoolSelectorSagas, dashboardSagas]) => {
           injectSagas(loginSagas.default);
           injectSagas(schoolSelectorSagas.default);
+          injectSagas(dashboardSagas.default);
           renderRoute(authenticationComponent);
         });
 
         importModules.catch(errorLoading);
       },
       childRoutes: [
+        {
+          path: '/new_school',
+          name: 'new_school',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/SchoolsAdd/sagas'),
+              import('containers/SchoolsAdd'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([schoolsAddSagas, component]) => {
+              injectSagas(schoolsAddSagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
         {
           path: '/courses',
           name: 'courses',

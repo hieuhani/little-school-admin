@@ -6,16 +6,10 @@ const validate = (values) => {
     errors.name = 'Must be 100 characters or less';
   }
 
-  if (!values.get('description')) {
-    errors.description = 'Required';
-  } else if (values.get('description').length > 500) {
-    errors.description = 'Must be 500 characters or less';
-  }
-
-  if (!values.get('price')) {
-    errors.price = 'Required';
-  } else if (isNaN(values.get('price'))) {
-    errors.price = 'Price must an integer number';
+  if (values.get('description')) {
+    if (values.get('description').length > 500) {
+      errors.description = 'Must be 500 characters or less';
+    }
   }
 
   if (!values.get('course_id')) {

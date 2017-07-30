@@ -1,26 +1,34 @@
 import React from 'react';
 // import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
+import { Link } from 'react-router';
 import { white } from 'material-ui/styles/colors';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 import './styles.scss';
 
-// const styles = {
-//   navIcon: {
-//     width: 59,
-//     height: 59,
-//     padding: 18,
-//   },
-// };
+const styles = {
+  // navIcon: {
+  //   width: 59,
+  //   height: 59,
+  //   padding: 18,
+  // },
+  menuLink: {
+    textDecoration: 'none',
+  },
+};
 
 function ViewNavigationBar(props) {
   return (
     <div className="view-navigation-bar">
       <nav className="navigation-bar fixed-top">
-        <a className="navbar-brand" href="#@">Little School</a>
+        <div className="navbar-brand">
+          {props.school.get('name')}
+        </div>
         <ul className="nav nav-pills right-items">
           <li className="nav-item">
             <IconMenu
@@ -29,6 +37,15 @@ function ViewNavigationBar(props) {
               anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
               targetOrigin={{ horizontal: 'left', vertical: 'top' }}
             >
+              <Link to="/new_school" style={styles.menuLink}>
+                <MenuItem
+                  primaryText="Create new school"
+                />
+              </Link>
+              <MenuItem
+                primaryText="Change school to manage"
+                onClick={props.handleChangeSchool}
+              />
               <MenuItem
                 primaryText="Sign out"
                 onClick={props.handleUserSignOut}
@@ -42,7 +59,9 @@ function ViewNavigationBar(props) {
 }
 
 ViewNavigationBar.propTypes = {
-  handleUserSignOut: React.PropTypes.func,
+  handleUserSignOut: PropTypes.func,
+  handleChangeSchool: PropTypes.func,
+  school: PropTypes.instanceOf(Immutable.Map),
 };
 
 export default ViewNavigationBar;

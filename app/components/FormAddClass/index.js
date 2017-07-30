@@ -21,9 +21,8 @@ class FormAddClass extends React.PureComponent {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <StyledFormWrapper>
-          <Field name="name" type="text" component={FieldForm} label="Name" hintText="Class name" />
+          <Field name="name" type="text" component={FieldForm} label="Name *" hintText="Class name" />
           <Field name="description" type="text" component={FieldForm} label="Description" hintText="Class description" multiLine />
-          <Field name="price" type="text" component={FieldForm} label="Price" hintText="Price" />
           <SelectField
             value={this.props.courseID}
             onChange={(event, index, value) => this.props.change('course_id', value)}

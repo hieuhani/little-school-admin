@@ -27,6 +27,7 @@ export class ClassesAdd extends React.PureComponent { // eslint-disable-line rea
   componentWillReceiveProps(nextProps) {
     if (this.props.status === REQUEST_STATUS.REQUESTING && nextProps.status === REQUEST_STATUS.SUCCEEDED) {
       this.closeForm();
+      window.location.reload();
     }
   }
 

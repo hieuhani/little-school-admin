@@ -17,7 +17,10 @@ const FieldForm = ({ label, hintText, input, type, multiLine, meta: { touched, e
 
 FieldForm.propTypes = {
   label: PropTypes.string,
-  hintText: PropTypes.object,
+  hintText: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   type: PropTypes.string,
   input: PropTypes.object,
   meta: PropTypes.object,
