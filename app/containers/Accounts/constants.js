@@ -2,3 +2,7 @@ export const GET_ACCOUNTS_REQUEST = 'app/Accounts/GET_ACCOUNTS_REQUEST';
 export const GET_ACCOUNTS_SUCCESS = 'app/Accounts/GET_ACCOUNTS_SUCCESS';
 export const GET_ACCOUNTS_ERROR = 'app/Accounts/GET_ACCOUNTS_ERROR';
 export const CHANGE_PAGE = 'app/Accounts/CHANGE_PAGE';
+export const SEARCH_BY_USERNAME_REQUEST = 'app/Accounts/SEARCH_BY_USERNAME_REQUEST';
+export const SEARCH_BY_USERNAME_SUCCESS = 'app/Accounts/SEARCH_BY_USERNAME_SUCCESS';
+export const SEARCH_BY_USERNAME_ERROR = 'app/Accounts/SEARCH_BY_USERNAME_ERROR';
+export const CLEAR_STUDENT_DETAILS = 'app/Accounts/CLEAR_STUDENT_DETAILS';

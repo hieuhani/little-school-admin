@@ -126,6 +126,15 @@ export const routes = {
         method: httpMethods.GET,
       };
     },
+    searchByUsername(username) {
+      return {
+        path: '/api/manager/schools/1/users/find',
+        method: httpMethods.POST,
+        body: {
+          username,
+        },
+      };
+    },
   },
   me: {
     ownSchools() {

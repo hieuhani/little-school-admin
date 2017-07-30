@@ -22,9 +22,21 @@ const selectSize = () => createSelector(
   (subState) => subState.get('per_page')
 );
 
+const selectFindStudentStatus = () => createSelector(
+  selectAccountsDomain(),
+  (subState) => subState.get('findStudentStatus')
+);
+
+const selectStudentDetail = () => createSelector(
+  selectAccountsDomain(),
+  (subState) => subState.get('studentDetail')
+);
+
 export {
   selectCurrentPage,
   selectCount,
   selectUsers,
   selectSize,
+  selectFindStudentStatus,
+  selectStudentDetail,
 };
