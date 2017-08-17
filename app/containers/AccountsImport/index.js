@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
+import { REQUEST_STATUS } from 'global-constants';
 import { createStructuredSelector } from 'reselect';
 import { browserHistory } from 'react-router';
 import ViewDialog from '../../components/ViewDialog';
@@ -20,6 +21,7 @@ import {
   selectFile,
   selectAccounts,
   selectCSVUploadStatus,
+  selectCreateAccountsStatus,
 } from './selectors';
 
 export class AccountsImport extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -27,9 +29,21 @@ export class AccountsImport extends React.PureComponent { // eslint-disable-line
     super(props);
 
     this.createAccounts = () => {
-      this.props.createAccounts(this.props.accounts.filter((account) => (account.get('selected'))));
+      this.props.createAccounts(this.props.defaultSchool, this.props.accounts.filter((account) => (account.get('selected'))));
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.createAccountsStatus === REQUEST_STATUS.REQUESTING && nextProps.createAccountsStatus === REQUEST_STATUS.SUCCEEDED) {
+      this.closeForm();
+    }
+  }
+
+  closeForm() {
+    browserHistory.push('/accounts');
+    window.location.reload();
+  }
+
   render() {
     return (
       <ViewDialog header={<ViewDialogHeader title="Import users" />}>
@@ -40,6 +54,7 @@ export class AccountsImport extends React.PureComponent { // eslint-disable-line
           csvStatus={this.props.csvStatus}
           cancelImport={() => browserHistory.push('/accounts')}
           createAccounts={this.createAccounts}
+          createAccountsStatus={this.props.createAccountsStatus}
         />
       </ViewDialog>
     );
@@ -54,6 +69,7 @@ AccountsImport.propTypes = {
   file: PropTypes.object,
   accounts: PropTypes.instanceOf(Immutable.List),
   csvStatus: PropTypes.number,
+  createAccountsStatus: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -61,13 +77,14 @@ const mapStateToProps = createStructuredSelector({
   file: selectFile(),
   accounts: selectAccounts(),
   csvStatus: selectCSVUploadStatus(),
+  createAccountsStatus: selectCreateAccountsStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     uploadCsv: (schoolID, file) => (dispatch(uploadCsv(schoolID, file))),
     handleRowSelection: (indexes) => (dispatch(handleRowSelection(indexes))),
-    createAccounts: (accounts) => (dispatch(createAccounts(accounts))),
+    createAccounts: (schoolID, accounts) => (dispatch(createAccounts(schoolID, accounts))),
     dispatch,
   };
 }

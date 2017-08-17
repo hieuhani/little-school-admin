@@ -17,8 +17,15 @@ const selectCSVUploadStatus = () => createSelector(
   (subState) => subState.get('status')
 );
 
+const selectCreateAccountsStatus = () => createSelector(
+  selectAccountsImportDomain(),
+  (subState) => subState.get('createAccountsStatus')
+);
+
+
 export {
   selectFile,
   selectAccounts,
   selectCSVUploadStatus,
+  selectCreateAccountsStatus,
 };

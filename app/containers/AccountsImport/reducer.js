@@ -6,12 +6,16 @@ import {
   UPLOAD_FILE_CSV_SUCCESS,
   UPLOAD_FILE_CSV_ERROR,
   UPDATE_ROW_SELECTION_STATUS,
+  CREATE_ACCOUNTS_REQUEST,
+  CREATE_ACCOUNTS_SUCCESS,
+  CREATE_ACCOUNTS_ERROR,
 } from './constants';
 
 const initialState = fromJS({
   file: null,
   status: REQUEST_STATUS.INITIAL,
   accounts: [],
+  createAccountsStatus: REQUEST_STATUS.INITIAL,
 });
 
 function accountsImportReducer(state = initialState, action) {
@@ -71,6 +75,15 @@ function accountsImportReducer(state = initialState, action) {
         }
         return account.set('selected', false);
       }));
+    case CREATE_ACCOUNTS_REQUEST:
+      return state
+        .set('createAccountsStatus', REQUEST_STATUS.REQUESTING);
+    case CREATE_ACCOUNTS_SUCCESS:
+      return state
+        .set('createAccountsStatus', REQUEST_STATUS.SUCCEEDED);
+    case CREATE_ACCOUNTS_ERROR:
+      return state
+        .set('createAccountsStatus', REQUEST_STATUS.FAILED);
     default:
       return state;
   }

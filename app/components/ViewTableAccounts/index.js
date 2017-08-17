@@ -25,7 +25,7 @@ function ViewTableAccounts({ accounts }) {
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
         {accounts.map((account) => (
-          <TableRow key={account.get('id')}>
+          <TableRow key={account.get('id')} selectable={false}>
             <TableRowColumn>
               {account.get('username')}
             </TableRowColumn>

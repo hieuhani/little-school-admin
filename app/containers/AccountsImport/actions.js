@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import {
   UPLOAD_FILE_CSV_REQUEST,
   UPLOAD_FILE_CSV_SUCCESS,
@@ -42,10 +43,17 @@ export function handleRowSelection(indexes) {
   };
 }
 
-export function createAccounts(accounts) {
+export function createAccounts(schoolID, inputAccounts) {
+  const accounts = inputAccounts.map((account) => (Map({
+    first_name: account.get('firstName'),
+    last_name: account.get('lastName'),
+  })));
   return {
     type: CREATE_ACCOUNTS_REQUEST,
-    payload: accounts,
+    payload: {
+      accounts,
+      schoolID,
+    },
   };
 }
 

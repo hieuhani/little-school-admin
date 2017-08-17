@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-const baseAPIEndpoint = 'http://localhost:3000';
+const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
 
 export const httpMethods = {
   POST: 'POST',
@@ -142,6 +142,15 @@ export const routes = {
         path: `/api/manager/schools/${schoolID}/users/import_csv`,
         method: httpMethods.POST,
         body,
+      };
+    },
+    bulkCreateAccounts(schoolID, accounts) {
+      return {
+        path: `/api/manager/schools/${schoolID}/users/bulk_create`,
+        method: httpMethods.POST,
+        body: {
+          accounts: accounts.toJS(),
+        },
       };
     },
   },

@@ -16,7 +16,7 @@ const initialState = fromJS({
   users: [],
   page: 1,
   count: 0,
-  per_page: 5,
+  per_page: 10,
   studentDetail: null,
   findStudentStatus: REQUEST_STATUS.INITIAL,
 });
