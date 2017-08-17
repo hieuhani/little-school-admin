@@ -25,6 +25,7 @@ import classUsersAddReducer from 'containers/ClassUsersAdd/reducer';
 import classroomReducer from 'containers/Classroom/reducer';
 import accountsReducer from 'containers/Accounts/reducer';
 import accountsAddReducer from 'containers/AccountsAdd/reducer';
+import accountsImportReducer from 'containers/AccountsImport/reducer';
 import dashboardReducer from 'containers/Dashboard/reducer';
 import schoolSelectorReducer from 'containers/SchoolSelector/reducer';
 import schoolsAddReducer from 'containers/SchoolsAdd/reducer';
@@ -84,6 +85,7 @@ export default function createReducer(asyncReducers) {
     dashboard: dashboardReducer,
     schoolSelector: schoolSelectorReducer,
     schoolsAdd: schoolsAddReducer,
+    accountsImport: accountsImportReducer,
     ...asyncReducers,
   });
 }

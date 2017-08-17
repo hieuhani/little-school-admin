@@ -135,6 +135,15 @@ export const routes = {
         },
       };
     },
+    importCSV(schoolID, file) {
+      const body = new FormData();
+      body.append('file', file);
+      return {
+        path: `/api/manager/schools/${schoolID}/users/import_csv`,
+        method: httpMethods.POST,
+        body,
+      };
+    },
   },
   me: {
     ownSchools() {

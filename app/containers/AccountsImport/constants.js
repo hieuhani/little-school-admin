@@ -1,0 +1,7 @@
+export const UPLOAD_FILE_CSV_REQUEST = 'app/AccountsImport/UPLOAD_FILE_CSV_REQUEST';
+export const UPLOAD_FILE_CSV_SUCCESS = 'app/AccountsImport/UPLOAD_FILE_CSV_SUCCESS';
+export const UPLOAD_FILE_CSV_ERROR = 'app/AccountsImport/UPLOAD_FILE_CSV_ERROR';
+export const UPDATE_ROW_SELECTION_STATUS = 'app/AccountsImport/UPDATE_ROW_SELECTION_STATUS';
+export const CREATE_ACCOUNTS_REQUEST = 'app/AccountsImport/CREATE_ACCOUNTS_REQUEST';
+export const CREATE_ACCOUNTS_SUCCESS = 'app/AccountsImport/CREATE_ACCOUNTS_SUCCESS';
+export const CREATE_ACCOUNTS_ERROR = 'app/AccountsImport/CREATE_ACCOUNTS_ERROR';

@@ -36,6 +36,15 @@ function ViewAccountsHeader({ handleSearchUser, findStudentStatus }) {
               labelColor={white}
             />
           </Link>
+          <Link to="/accounts/import">
+            <RaisedButton
+              label="Import CSV"
+              icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
+              style={{ float: 'right' }}
+              backgroundColor={green500}
+              labelColor={white}
+            />
+          </Link>
         </div>
       </div>
     </div>
