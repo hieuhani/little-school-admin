@@ -153,6 +153,15 @@ export const routes = {
         },
       };
     },
+    bulkCreateClassAccounts(schoolID, classID, accounts) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}/students/bulk_create`,
+        method: httpMethods.POST,
+        body: {
+          accounts: accounts.toJS(),
+        },
+      };
+    },
   },
   me: {
     ownSchools() {

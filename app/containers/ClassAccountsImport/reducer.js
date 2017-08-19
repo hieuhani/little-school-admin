@@ -18,7 +18,7 @@ const initialState = fromJS({
   createAccountsStatus: REQUEST_STATUS.INITIAL,
 });
 
-function accountsImportReducer(state = initialState, action) {
+function classAccountsImportReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case UPLOAD_FILE_CSV_REQUEST:
@@ -28,13 +28,14 @@ function accountsImportReducer(state = initialState, action) {
     case UPLOAD_FILE_CSV_SUCCESS: {
       let accounts = [];
       _.forEach(payload, (line) => {
-        if (line.length === 5) {
+        if (line.length === 6) {
           accounts[accounts.length] = {
             first_name: line[0],
             last_name: line[1],
-            parent: line[2],
+            parent_name: line[2],
             phone: line[3],
-            birthday: line[4],
+            class_text: line[4],
+            birthday: line[5],
           };
         }
       });
@@ -73,4 +74,4 @@ function accountsImportReducer(state = initialState, action) {
   }
 }
 
-export default accountsImportReducer;
+export default classAccountsImportReducer;

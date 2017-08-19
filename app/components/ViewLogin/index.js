@@ -10,7 +10,7 @@ function ViewLogin(props) {
       <div className="wrapper row">
         <div className="col-md-6 login-form">
           <h2 className="logo" />
-          <FormLogin onSubmit={props.onLoginFormSubmit} />
+          <FormLogin onSubmit={props.onLoginFormSubmit} authError={props.error} />
         </div>
         <div className="col-md-6 intro">
           <img src={introImage} role="presentation" />
@@ -23,6 +23,7 @@ function ViewLogin(props) {
 
 ViewLogin.propTypes = {
   onLoginFormSubmit: PropTypes.func.isRequired,
+  error: PropTypes.object,
 };
 
 export default ViewLogin;

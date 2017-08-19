@@ -26,16 +26,7 @@ function ViewAccountsHeader({ handleSearchUser, findStudentStatus }) {
             This user is not exists
           </ErrorMessage>}
         </div>
-        <div className="col-md-3 offset-3">
-          <Link to="/accounts/add">
-            <RaisedButton
-              label="Add new account"
-              icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
-              style={{ float: 'right' }}
-              backgroundColor={green500}
-              labelColor={white}
-            />
-          </Link>
+        <div className="col-md-4 offset-2">
           <Link to="/accounts/import">
             <RaisedButton
               label="Import CSV"

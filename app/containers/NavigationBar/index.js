@@ -51,7 +51,7 @@ NavigationBar.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  loggedOut: selectLoggedOut(),
+  isLoggedOut: selectLoggedOut(),
   school: selectSchool(),
 });
 

@@ -4,13 +4,7 @@ const selectLogin = () => (state) => state.get('login');
 
 const selectError = () => createSelector(
   selectLogin(),
-  (loginState) => {
-    const error = loginState.get('error');
-    if (error) {
-      return error.toJS();
-    }
-    return null;
-  }
+  (loginState) => (loginState.get('error'))
 );
 
 const selectLoggedUser = () => createSelector(

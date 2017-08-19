@@ -42,11 +42,12 @@ export function handleRowSelection(indexes) {
   };
 }
 
-export function createAccounts(schoolID, accounts) {
+export function createAccounts(schoolID, classID, accounts) {
   return {
     type: CREATE_ACCOUNTS_REQUEST,
     payload: {
       accounts,
+      classID,
       schoolID,
     },
   };

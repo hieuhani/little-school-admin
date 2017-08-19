@@ -26,7 +26,7 @@ function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
         {students.map((student) => (
-          <TableRow key={student.get('id')}>
+          <TableRow key={student.get('id')} selectable={false}>
             <TableRowColumn>
               {student.get('id')}
             </TableRowColumn>

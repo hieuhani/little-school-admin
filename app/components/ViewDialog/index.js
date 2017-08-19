@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Dialog from 'material-ui/Dialog';
 import { grey50 } from 'material-ui/styles/colors';
 
@@ -12,7 +13,7 @@ function ViewDialog(props) {
       title={props.header}
       bodyStyle={styles.body}
       autoScrollBodyContent
-      contentStyle={styles.content}
+      contentStyle={_.merge(styles.content, props.contentStyle)}
     >
       {props.children}
     </Dialog>
@@ -32,6 +33,11 @@ const styles = {
 ViewDialog.propTypes = {
   children: PropTypes.node,
   header: PropTypes.node,
+  contentStyle: PropTypes.object,
+};
+
+ViewDialog.defaultProps = {
+  contentStyle: {},
 };
 
 export default ViewDialog;

@@ -316,6 +316,25 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
               },
             },
+            {
+              path: '/classes/:classID/accounts/import',
+              name: 'class_accounts_import',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/ClassAccountsImport/sagas'),
+                  import('containers/ClassAccountsImport'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
           ],
         },
         {

@@ -22,13 +22,21 @@ function ViewPreviewAccounts({ accounts, handleRowSelection, csvStatus, createAc
           <TableRow>
             <TableHeaderColumn>First name</TableHeaderColumn>
             <TableHeaderColumn>Last Name</TableHeaderColumn>
+            <TableHeaderColumn>Parent Name</TableHeaderColumn>
+            <TableHeaderColumn>Phone</TableHeaderColumn>
+            <TableHeaderColumn>Class</TableHeaderColumn>
+            <TableHeaderColumn>Birthday</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody deselectOnClickaway={false}>
           {accounts.map((account, index) => (
             <TableRow key={index} selected={account.get('selected')}>
-              <TableRowColumn>{account.get('firstName')}</TableRowColumn>
-              <TableRowColumn>{account.get('lastName')}</TableRowColumn>
+              <TableRowColumn>{account.get('first_name')}</TableRowColumn>
+              <TableRowColumn>{account.get('last_name')}</TableRowColumn>
+              <TableRowColumn>{account.get('parent_name')}</TableRowColumn>
+              <TableRowColumn>{account.get('phone')}</TableRowColumn>
+              <TableRowColumn>{account.get('class_text')}</TableRowColumn>
+              <TableRowColumn>{account.get('birthday')}</TableRowColumn>
             </TableRow>
           ))}
         </TableBody>
