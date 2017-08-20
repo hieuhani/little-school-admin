@@ -4,6 +4,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import {
   GET_CLASS_STUDENTS_REQUEST,
   DELETE_CLASS_STUDENT_REQUEST,
+  EXPORT_STUDENTS_REQUEST,
 } from './constants';
 import request, { routes } from '../../services/api';
 import {
@@ -43,7 +44,23 @@ export function* deleteClassStudentWatcher() {
   yield cancel(watcher);
 }
 
+export function* exportClassStudents({ payload }) {
+  yield call(request, routes.classroom.exportClassStudents(payload.schoolID, payload.classID));
+  // if (!response.error) {
+  //   yield put(removeClassStudentSuccess(payload.studentID));
+  // } else {
+  //   yield put(removeClassStudentError(response));
+  // }
+}
+
+export function* exportClassStudentsWatcher() {
+  const watcher = yield takeLatest(EXPORT_STUDENTS_REQUEST, exportClassStudents);
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
 export default [
   getClassStudentsWatcher,
   deleteClassStudentWatcher,
+  exportClassStudentsWatcher,
 ];

@@ -5,6 +5,7 @@ import {
   DELETE_CLASS_STUDENT_REQUEST,
   DELETE_CLASS_STUDENT_SUCCESS,
   DELETE_CLASS_STUDENT_ERROR,
+  EXPORT_STUDENTS_REQUEST,
 } from './constants';
 
 export function getClassStudents(schoolID, classID) {
@@ -55,5 +56,15 @@ export function removeClassStudentError(error) {
   return {
     type: DELETE_CLASS_STUDENT_ERROR,
     payload: error,
+  };
+}
+
+export function exportStudents(schoolID, classID) {
+  return {
+    type: EXPORT_STUDENTS_REQUEST,
+    payload: {
+      schoolID,
+      classID,
+    },
   };
 }

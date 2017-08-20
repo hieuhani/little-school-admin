@@ -25,7 +25,10 @@ export class Classroom extends React.PureComponent { // eslint-disable-line reac
   render() {
     return (
       <div>
-        <ViewClassroomHeader classID={this.props.params.classID} />
+        <ViewClassroomHeader
+          classID={this.props.params.classID}
+          schoolID={this.props.defaultSchool}
+        />
         <ViewTableStudents
           students={this.props.students}
           handleRemoveStudent={(studentID) => this.props.removeClassStudent(this.props.defaultSchool, this.props.params.classID, studentID)}
