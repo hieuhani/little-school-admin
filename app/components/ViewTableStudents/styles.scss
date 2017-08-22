@@ -1,0 +1,9 @@
+.view-table-students {
+  thead, tbody {
+    tr {
+      td:first-child, th:first-child {
+        width: 80px;
+      }
+    }
+  }
+}

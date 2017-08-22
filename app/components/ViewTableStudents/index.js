@@ -10,17 +10,20 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import './styles.scss';
 
 function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
   return (
-    <Table>
+    <Table className="view-table-students">
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
           <TableHeaderColumn>ID</TableHeaderColumn>
           <TableHeaderColumn>Username</TableHeaderColumn>
           <TableHeaderColumn>First Name</TableHeaderColumn>
           <TableHeaderColumn>Last Name</TableHeaderColumn>
-          <TableHeaderColumn>Email</TableHeaderColumn>
+          <TableHeaderColumn>Phone</TableHeaderColumn>
+          <TableHeaderColumn>Parent Name</TableHeaderColumn>
+          <TableHeaderColumn>Class Description</TableHeaderColumn>
           <TableHeaderColumn />
         </TableRow>
       </TableHeader>
@@ -40,7 +43,13 @@ function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
               {student.get('last_name')}
             </TableRowColumn>
             <TableRowColumn>
-              {student.get('email')}
+              {student.get('phone')}
+            </TableRowColumn>
+            <TableRowColumn>
+              {student.get('parent_name')}
+            </TableRowColumn>
+            <TableRowColumn>
+              {student.get('class_text')}
             </TableRowColumn>
             <TableRowColumn>
               <RaisedButton

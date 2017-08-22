@@ -28,7 +28,7 @@ function classAccountsImportReducer(state = initialState, action) {
     case UPLOAD_FILE_CSV_SUCCESS: {
       let accounts = [];
       _.forEach(payload, (line) => {
-        if (line.length === 6) {
+        if (line.length >= 6) {
           accounts[accounts.length] = {
             first_name: line[0],
             last_name: line[1],

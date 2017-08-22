@@ -57,7 +57,7 @@ export class ClassAccountsImport extends React.PureComponent { // eslint-disable
           accounts={this.props.accounts}
           handleRowSelection={this.props.handleRowSelection}
           csvStatus={this.props.csvStatus}
-          cancelImport={() => browserHistory.push('/accounts')}
+          cancelImport={() => browserHistory.push(`/classes/${this.props.params.classID}`)}
           createAccounts={this.createAccounts}
           createAccountsStatus={this.props.createAccountsStatus}
         />

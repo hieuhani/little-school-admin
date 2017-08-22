@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-export const baseAPIEndpoint = 'http://localhost:3000';
+export const baseAPIEndpoint = 'https://server.pekopeko.vn';
 
 export const httpMethods = {
   POST: 'POST',

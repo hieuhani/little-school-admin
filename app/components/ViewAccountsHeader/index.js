@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { REQUEST_STATUS } from 'global-constants';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import { white, green500 } from 'material-ui/styles/colors';
 import styled from 'styled-components';
-import { Link } from 'react-router';
 import FormSearchUser from '../FormSearchUser';
 
 const ErrorMessage = styled.p`
@@ -25,17 +21,6 @@ function ViewAccountsHeader({ handleSearchUser, findStudentStatus }) {
           {findStudentStatus === REQUEST_STATUS.FAILED && <ErrorMessage>
             This user is not exists
           </ErrorMessage>}
-        </div>
-        <div className="col-md-4 offset-2">
-          <Link to="/accounts/import">
-            <RaisedButton
-              label="Import CSV"
-              icon={<FontIcon className="material-icons" color={white}>add</FontIcon>}
-              style={{ float: 'right' }}
-              backgroundColor={green500}
-              labelColor={white}
-            />
-          </Link>
         </div>
       </div>
     </div>
