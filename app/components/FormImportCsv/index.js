@@ -15,7 +15,7 @@ const styles = {
 function FormImportCsv({ handleFileDropped, file }) {
   return (
     <div className="form-import-csv">
-      <Dropzone accept="text/*" multiple={false} onDrop={(files) => handleFileDropped(_.head(files))} style={styles.dropZone}>
+      <Dropzone accept="text/csv, .csv" multiple={false} onDrop={(files) => handleFileDropped(_.head(files))} style={styles.dropZone}>
         {!file && <span className="text">Select or drag CSV file</span>}
         {file && <span>{file.name}</span>}
       </Dropzone>
