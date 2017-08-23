@@ -10,18 +10,16 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
-import './styles.scss';
 
 function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
   return (
     <Table className="view-table-students">
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
           <TableHeaderColumn>Username</TableHeaderColumn>
-          <TableHeaderColumn>First Name</TableHeaderColumn>
-          <TableHeaderColumn>Last Name</TableHeaderColumn>
+          <TableHeaderColumn>Full Name</TableHeaderColumn>
           <TableHeaderColumn>Phone</TableHeaderColumn>
+          <TableHeaderColumn>Email</TableHeaderColumn>
           <TableHeaderColumn>Parent Name</TableHeaderColumn>
           <TableHeaderColumn>Class Description</TableHeaderColumn>
           <TableHeaderColumn />
@@ -31,19 +29,16 @@ function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
         {students.map((student) => (
           <TableRow key={student.get('id')} selectable={false}>
             <TableRowColumn>
-              {student.get('id')}
-            </TableRowColumn>
-            <TableRowColumn>
               {student.get('username')}
             </TableRowColumn>
             <TableRowColumn>
-              {student.get('first_name')}
-            </TableRowColumn>
-            <TableRowColumn>
-              {student.get('last_name')}
+              {student.get('full_name')}
             </TableRowColumn>
             <TableRowColumn>
               {student.get('phone')}
+            </TableRowColumn>
+            <TableRowColumn>
+              {student.get('email')}
             </TableRowColumn>
             <TableRowColumn>
               {student.get('parent_name')}

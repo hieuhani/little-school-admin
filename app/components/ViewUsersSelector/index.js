@@ -16,18 +16,16 @@ function ViewUsersSelector({ users, handleSelectUser }) {
       <TableHeader>
         <TableRow>
           <TableHeaderColumn>Username</TableHeaderColumn>
-          <TableHeaderColumn>First Name</TableHeaderColumn>
-          <TableHeaderColumn>Last Name</TableHeaderColumn>
-          <TableHeaderColumn>Email</TableHeaderColumn>
+          <TableHeaderColumn>Full Name</TableHeaderColumn>
+          <TableHeaderColumn>Parent Name</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.get('id')}>
             <TableRowColumn>{user.get('username')}</TableRowColumn>
-            <TableRowColumn>{user.get('first_name')}</TableRowColumn>
-            <TableRowColumn>{user.get('last_name')}</TableRowColumn>
-            <TableRowColumn>{user.get('email')}</TableRowColumn>
+            <TableRowColumn>{user.get('full_name')}</TableRowColumn>
+            <TableRowColumn>{user.get('parent_name')}</TableRowColumn>
           </TableRow>
         ))}
       </TableBody>

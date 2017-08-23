@@ -20,23 +20,23 @@ function ViewPreviewAccounts({ accounts, handleRowSelection, csvStatus, createAc
       {accounts.size > 0 && <Table onRowSelection={handleRowSelection} multiSelectable>
         <TableHeader displaySelectAll={false}>
           <TableRow>
-            <TableHeaderColumn>First name</TableHeaderColumn>
-            <TableHeaderColumn>Last Name</TableHeaderColumn>
+            <TableHeaderColumn>Full name</TableHeaderColumn>
+            <TableHeaderColumn>Birthday</TableHeaderColumn>
+            <TableHeaderColumn>Real Class</TableHeaderColumn>
             <TableHeaderColumn>Parent Name</TableHeaderColumn>
             <TableHeaderColumn>Phone</TableHeaderColumn>
-            <TableHeaderColumn>Class</TableHeaderColumn>
-            <TableHeaderColumn>Birthday</TableHeaderColumn>
+            <TableHeaderColumn>Email</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody deselectOnClickaway={false}>
           {accounts.map((account, index) => (
             <TableRow key={index} selected={account.get('selected')}>
-              <TableRowColumn>{account.get('first_name')}</TableRowColumn>
-              <TableRowColumn>{account.get('last_name')}</TableRowColumn>
+              <TableRowColumn>{account.get('full_name')}</TableRowColumn>
+              <TableRowColumn>{account.get('birthday')}</TableRowColumn>
+              <TableRowColumn>{account.get('class_text')}</TableRowColumn>
               <TableRowColumn>{account.get('parent_name')}</TableRowColumn>
               <TableRowColumn>{account.get('phone')}</TableRowColumn>
-              <TableRowColumn>{account.get('class_text')}</TableRowColumn>
-              <TableRowColumn>{account.get('birthday')}</TableRowColumn>
+              <TableRowColumn>{account.get('email')}</TableRowColumn>
             </TableRow>
           ))}
         </TableBody>

@@ -17,9 +17,11 @@ function ViewTableAccounts({ accounts }) {
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
           <TableHeaderColumn>Username</TableHeaderColumn>
-          <TableHeaderColumn>First Name</TableHeaderColumn>
-          <TableHeaderColumn>Last Name</TableHeaderColumn>
+          <TableHeaderColumn>Full Name</TableHeaderColumn>
+          <TableHeaderColumn>Phone</TableHeaderColumn>
+          <TableHeaderColumn>Parent Name</TableHeaderColumn>
           <TableHeaderColumn>Email</TableHeaderColumn>
+          <TableHeaderColumn>Real Class</TableHeaderColumn>
           <TableHeaderColumn>Studying classes</TableHeaderColumn>
         </TableRow>
       </TableHeader>
@@ -30,13 +32,19 @@ function ViewTableAccounts({ accounts }) {
               {account.get('username')}
             </TableRowColumn>
             <TableRowColumn>
-              {account.get('first_name')}
+              {account.get('full_name')}
             </TableRowColumn>
             <TableRowColumn>
-              {account.get('last_name')}
+              {account.get('phone')}
+            </TableRowColumn>
+            <TableRowColumn>
+              {account.get('parent_name')}
             </TableRowColumn>
             <TableRowColumn>
               {account.get('email')}
+            </TableRowColumn>
+            <TableRowColumn>
+              {account.get('class_text')}
             </TableRowColumn>
             <TableRowColumn>
               <ViewStudyingClasses classrooms={account.get('classrooms')} />

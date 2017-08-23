@@ -30,12 +30,12 @@ function classAccountsImportReducer(state = initialState, action) {
       _.forEach(payload, (line) => {
         if (line.length >= 6) {
           accounts[accounts.length] = {
-            first_name: line[0],
-            last_name: line[1],
-            parent_name: line[2],
-            phone: line[3],
-            class_text: line[4],
-            birthday: line[5],
+            full_name: line[0],
+            birthday: line[1],
+            class_text: line[2],
+            parent_name: line[3],
+            phone: line[4],
+            email: line[5],
           };
         }
       });
