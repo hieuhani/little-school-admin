@@ -5,8 +5,9 @@ import Immutable from 'immutable';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router';
 import styled from 'styled-components';
-import { DEFAULT_SCHOOL_KEY } from 'config';
+import { DEFAULT_SCHOOL_KEY, ACCESS_TOKEN_KEY } from 'config';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import ViewSchoolsPicker from '../../components/ViewSchoolsPicker';
 
 import {
@@ -37,6 +38,11 @@ export class SchoolSelector extends React.PureComponent { // eslint-disable-line
       window.localStorage.setItem(DEFAULT_SCHOOL_KEY, schoolID);
       window.location.reload();
     };
+
+    this.logout = () => {
+      window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+      window.location.reload();
+    };
   }
   componentWillMount() {
     this.props.getOwnSchools();
@@ -53,6 +59,7 @@ export class SchoolSelector extends React.PureComponent { // eslint-disable-line
         <Link to="/new_school">
           <RaisedButton label="Create new school" fullWidth />
         </Link>
+        <FlatButton label="Sign out" fullWidth onTouchTap={this.logout} />
       </Wrapper>
     );
   }
