@@ -236,6 +236,25 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
               },
             },
+            {
+              path: '/classes/:classID/duplicate',
+              name: 'duplicate_class',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/ClassDuplicate/sagas'),
+                  import('containers/ClassDuplicate'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
           ],
         },
         {

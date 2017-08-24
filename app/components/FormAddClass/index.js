@@ -18,9 +18,14 @@ class FormAddClass extends React.PureComponent {
     this.props.dispatch(registerField('FormAddClass', 'course_id', 'Field'));
   }
   render() {
-    if (!(this.props.classroom && this.props.editMode)) {
+    if (this.props.editMode) {
+      if (!(this.props.classroom)) {
+        return null;
+      }
+    } else if (this.props.courses.size === 0) {
       return null;
     }
+
     return (
       <form onSubmit={this.props.handleSubmit}>
         <StyledFormWrapper>

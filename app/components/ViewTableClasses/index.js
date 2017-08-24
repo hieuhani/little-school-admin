@@ -48,7 +48,7 @@ function ViewTableClasses({ classes }) {
               <Link to={`/classes/${classroom.get('id')}/edit`} style={styles.buttonAction}>
                 <RaisedButton label="Edit" secondary />
               </Link>
-              <Link to={`/classes/${classroom.get('id')}/edit`}>
+              <Link to={`/classes/${classroom.get('id')}/duplicate`}>
                 <RaisedButton label="Duplicate" backgroundColor={yellow500} />
               </Link>
             </TableRowColumn>

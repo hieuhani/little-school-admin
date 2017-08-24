@@ -31,6 +31,7 @@ import schoolSelectorReducer from 'containers/SchoolSelector/reducer';
 import schoolsAddReducer from 'containers/SchoolsAdd/reducer';
 import classAccountsImportReducer from 'containers/ClassAccountsImport/reducer';
 import classEditReducer from 'containers/ClassEdit/reducer';
+import classDuplicateReducer from 'containers/ClassDuplicate/reducer';
 
 /*
  * routeReducer
@@ -90,6 +91,7 @@ export default function createReducer(asyncReducers) {
     accountsImport: accountsImportReducer,
     classAccountsImport: classAccountsImportReducer,
     classEdit: classEditReducer,
+    classDuplicate: classDuplicateReducer,
     ...asyncReducers,
   });
 }
