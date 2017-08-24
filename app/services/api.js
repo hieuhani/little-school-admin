@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-export const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
+export const baseAPIEndpoint = 'http://localhost:3000';
 
 export const httpMethods = {
   POST: 'POST',
@@ -57,6 +57,12 @@ export const routes = {
         method: httpMethods.GET,
       };
     },
+    show(schoolID, classID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}`,
+        method: httpMethods.GET,
+      };
+    },
     students(schoolID, classID) {
       return {
         path: `/api/manager/schools/${schoolID}/classes/${classID}/students`,
@@ -82,6 +88,13 @@ export const routes = {
       return {
         path: `/api/manager/schools/${schoolID}/classes/${classID}/students/export`,
         method: httpMethods.GET,
+      };
+    },
+    update(schoolID, classID, classroom) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}`,
+        method: httpMethods.PUT,
+        body: classroom,
       };
     },
   },

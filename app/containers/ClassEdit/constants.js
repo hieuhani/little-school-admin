@@ -1,0 +1,9 @@
+export const GET_COURSES_REQUEST = 'app/ClassEdit/GET_COURSES_REQUEST';
+export const GET_COURSES_SUCCESS = 'app/ClassEdit/GET_COURSES_SUCCESS';
+export const GET_COURSES_ERROR = 'app/ClassEdit/GET_COURSES_ERROR';
+export const GET_CLASS_REQUEST = 'app/ClassEdit/GET_CLASS_REQUEST';
+export const GET_CLASS_SUCCESS = 'app/ClassEdit/GET_CLASS_SUCCESS';
+export const GET_CLASS_ERROR = 'app/ClassEdit/GET_CLASS_ERROR';
+export const PUT_UPDATE_CLASS_REQUEST = 'app/ClassEdit/PUT_UPDATE_CLASS_REQUEST';
+export const PUT_UPDATE_CLASS_SUCCESS = 'app/ClassEdit/PUT_UPDATE_CLASS_SUCCESS';
+export const PUT_UPDATE_CLASS_ERROR = 'app/ClassEdit/PUT_UPDATE_CLASS_ERROR';

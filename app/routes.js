@@ -217,6 +217,25 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
               },
             },
+            {
+              path: '/classes/:classID/edit',
+              name: 'edit_class',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/ClassEdit/sagas'),
+                  import('containers/ClassEdit'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
           ],
         },
         {

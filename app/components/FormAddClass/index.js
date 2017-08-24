@@ -18,12 +18,15 @@ class FormAddClass extends React.PureComponent {
     this.props.dispatch(registerField('FormAddClass', 'course_id', 'Field'));
   }
   render() {
+    if (!(this.props.classroom && this.props.editMode)) {
+      return null;
+    }
     return (
       <form onSubmit={this.props.handleSubmit}>
         <StyledFormWrapper>
           <Field name="name" type="text" component={FieldForm} label="Name *" hintText="Class name" />
           <Field name="description" type="text" component={FieldForm} label="Description" hintText="Class description" multiLine />
-          <SelectField
+          {!this.props.editMode && <SelectField
             value={this.props.courseID}
             onChange={(event, index, value) => this.props.change('course_id', value)}
             floatingLabelText="Course"
@@ -33,12 +36,16 @@ class FormAddClass extends React.PureComponent {
             {this.props.courses.map((course) => (
               <MenuItem key={course.get('id')} value={course.get('id')} primaryText={course.get('name')} />
             ))}
-          </SelectField>
+          </SelectField>}
         </StyledFormWrapper>
         <ViewBottomToolbar>
           <ButtonFlat label="Cancel" onClick={this.props.cancelAddClass} />
           <Spacer />
-          <ButtonFlat label="Add class" highlighted type="submit" disabled={this.props.invalid || this.props.status === REQUEST_STATUS.REQUESTING} />
+          <ButtonFlat
+            label={this.props.editMode ? 'Update class' : 'Add class'}
+            highlighted type="submit"
+            disabled={this.props.invalid || this.props.status === REQUEST_STATUS.REQUESTING}
+          />
         </ViewBottomToolbar>
       </form>
     );
@@ -59,14 +66,26 @@ FormAddClass.propTypes = {
   cancelAddClass: PropTypes.func,
   courseID: PropTypes.number,
   courses: PropTypes.instanceOf(Immutable.List),
+  classroom: PropTypes.instanceOf(Immutable.Map),
+  editMode: PropTypes.bool,
 };
 const selector = formValueSelector('FormAddClass');
-export default connect((state) => {
+export default connect((state, ownProps) => {
   // can select values individually
   const courseID = selector(state, 'course_id');
-  return {
+  const formState = {
     courseID,
   };
+  if (ownProps.editMode && ownProps.classroom && !courseID) {
+    formState.courseID = ownProps.classroom.get('course_id');
+    formState.initialValues = {
+      name: ownProps.classroom.get('name'),
+      description: ownProps.classroom.get('description'),
+      course_id: ownProps.classroom.get('course_id'),
+      id: ownProps.classroom.get('id'),
+    };
+  }
+  return formState;
 })(reduxForm({
   form: 'FormAddClass',
   validate,

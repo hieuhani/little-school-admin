@@ -9,6 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import { yellow500 } from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
@@ -27,7 +28,7 @@ function ViewTableClasses({ classes }) {
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
         {classes.map((classroom) => (
-          <TableRow key={classroom.get('id')}>
+          <TableRow key={classroom.get('id')} selectable={false}>
             <TableRowColumn>
               {classroom.get('id')}
             </TableRowColumn>
@@ -40,9 +41,15 @@ function ViewTableClasses({ classes }) {
             <TableRowColumn>
               {classroom.getIn(['course', 'name'])}
             </TableRowColumn>
-            <TableRowColumn>
-              <Link to={`/classes/${classroom.get('id')}`}>
+            <TableRowColumn style={{ padding: 0 }}>
+              <Link to={`/classes/${classroom.get('id')}`} style={styles.buttonAction}>
                 <RaisedButton label="View" primary />
+              </Link>
+              <Link to={`/classes/${classroom.get('id')}/edit`} style={styles.buttonAction}>
+                <RaisedButton label="Edit" secondary />
+              </Link>
+              <Link to={`/classes/${classroom.get('id')}/edit`}>
+                <RaisedButton label="Duplicate" backgroundColor={yellow500} />
               </Link>
             </TableRowColumn>
           </TableRow>
@@ -51,6 +58,12 @@ function ViewTableClasses({ classes }) {
     </Table>
   );
 }
+
+const styles = {
+  buttonAction: {
+    marginRight: 5,
+  },
+};
 
 ViewTableClasses.propTypes = {
   classes: PropTypes.instanceOf(Immutable.List),
