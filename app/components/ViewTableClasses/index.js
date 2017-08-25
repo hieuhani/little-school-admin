@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import { REQUEST_STATUS } from 'global-constants';
 import {
   Table,
   TableBody,
@@ -9,12 +10,15 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import { yellow500 } from 'material-ui/styles/colors';
-import RaisedButton from 'material-ui/RaisedButton';
+import ActionVisibility from 'material-ui/svg-icons/action/visibility';
+import ActionContentCopy from 'material-ui/svg-icons/content/content-copy';
+import ActionCreate from 'material-ui/svg-icons/content/create';
+import ActionDeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import IconButton from 'material-ui/IconButton';
 import { Link } from 'react-router';
 
 
-function ViewTableClasses({ classes }) {
+function ViewTableClasses({ classes, handleDeleteClass, deleteClassStatus }) {
   return (
     <Table>
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -43,14 +47,26 @@ function ViewTableClasses({ classes }) {
             </TableRowColumn>
             <TableRowColumn style={{ padding: 0 }}>
               <Link to={`/classes/${classroom.get('id')}`} style={styles.buttonAction}>
-                <RaisedButton label="View" primary />
+                <IconButton>
+                  <ActionVisibility />
+                </IconButton>
               </Link>
               <Link to={`/classes/${classroom.get('id')}/edit`} style={styles.buttonAction}>
-                <RaisedButton label="Edit" secondary />
+                <IconButton>
+                  <ActionCreate />
+                </IconButton>
               </Link>
               <Link to={`/classes/${classroom.get('id')}/duplicate`}>
-                <RaisedButton label="Duplicate" backgroundColor={yellow500} />
+                <IconButton>
+                  <ActionContentCopy />
+                </IconButton>
               </Link>
+              <IconButton
+                onClick={() => handleDeleteClass(classroom.get('id'))}
+                disabled={deleteClassStatus === REQUEST_STATUS.REQUESTING}
+              >
+                <ActionDeleteForever />
+              </IconButton>
             </TableRowColumn>
           </TableRow>
         ))}
@@ -67,6 +83,8 @@ const styles = {
 
 ViewTableClasses.propTypes = {
   classes: PropTypes.instanceOf(Immutable.List),
+  handleDeleteClass: PropTypes.func,
+  deleteClassStatus: PropTypes.number,
 };
 
 export default ViewTableClasses;

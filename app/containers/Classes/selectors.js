@@ -6,6 +6,13 @@ const selectClasses = () => createSelector(
   (subState) => subState.get('classes')
 );
 
+const selectDeleteClassStatus = () => createSelector(
+  selectClassesDomain(),
+  (subState) => subState.get('deleteClassStatus')
+);
+
+
 export {
   selectClasses,
+  selectDeleteClassStatus,
 };

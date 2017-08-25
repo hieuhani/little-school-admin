@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-export const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
+export const baseAPIEndpoint = 'http://localhost:3000';
 
 export const httpMethods = {
   POST: 'POST',
@@ -102,6 +102,12 @@ export const routes = {
         path: `/api/manager/schools/${schoolID}/classes/${classID}/duplicate`,
         method: httpMethods.POST,
         body: classroom,
+      };
+    },
+    delete(schoolID, classID) {
+      return {
+        path: `/api/manager/schools/${schoolID}/classes/${classID}`,
+        method: httpMethods.DELETE,
       };
     },
   },
