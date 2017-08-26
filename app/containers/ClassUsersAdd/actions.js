@@ -6,14 +6,30 @@ import {
   POST_ADD_USERS_TO_CLASS_REQUEST,
   POST_ADD_USERS_TO_CLASS_SUCCESS,
   POST_ADD_USERS_TO_CLASS_ERROR,
+  CHANGE_PAGE,
+  GET_FIND_NOT_STUDENT_OF_CLASS_REQUEST,
 } from './constants';
 
-export function getNotStudentsOfClass(schoolID, classID) {
+
+export function findNotStudentOfClass(schoolID, classID, username) {
+  return {
+    type: GET_FIND_NOT_STUDENT_OF_CLASS_REQUEST,
+    payload: {
+      schoolID,
+      classID,
+      username,
+    },
+  };
+}
+
+export function getNotStudentsOfClass(schoolID, classID, page, size) {
   return {
     type: GET_NOT_STUDENTS_OF_CLASS_REQUEST,
     payload: {
       schoolID,
       classID,
+      page,
+      size,
     },
   };
 }
@@ -61,5 +77,14 @@ export function postAddUsersToClassError(error) {
   return {
     type: POST_ADD_USERS_TO_CLASS_ERROR,
     payload: error,
+  };
+}
+
+export function changePage(page) {
+  return {
+    type: CHANGE_PAGE,
+    payload: {
+      page,
+    },
   };
 }

@@ -9,6 +9,9 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import ActionCreate from 'material-ui/svg-icons/content/create';
+import IconButton from 'material-ui/IconButton';
+import { Link } from 'react-router';
 import ViewStudyingClasses from '../ViewStudyingClasses';
 
 function ViewTableAccounts({ accounts }) {
@@ -23,6 +26,7 @@ function ViewTableAccounts({ accounts }) {
           <TableHeaderColumn>Email</TableHeaderColumn>
           <TableHeaderColumn>Real Class</TableHeaderColumn>
           <TableHeaderColumn>Studying classes</TableHeaderColumn>
+          <TableHeaderColumn />
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
@@ -48,6 +52,13 @@ function ViewTableAccounts({ accounts }) {
             </TableRowColumn>
             <TableRowColumn>
               <ViewStudyingClasses classrooms={account.get('classrooms')} />
+            </TableRowColumn>
+            <TableRowColumn>
+              <Link to={`/accounts/${account.get('id')}/edit`}>
+                <IconButton>
+                  <ActionCreate />
+                </IconButton>
+              </Link>
             </TableRowColumn>
           </TableRow>
         ))}

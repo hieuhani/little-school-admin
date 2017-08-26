@@ -9,7 +9,8 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import RaisedButton from 'material-ui/RaisedButton';
+import ActionDeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import IconButton from 'material-ui/IconButton';
 
 function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
   return (
@@ -47,12 +48,12 @@ function ViewTableStudents({ students, handleRemoveStudent, deletingStudent }) {
               {student.get('class_text')}
             </TableRowColumn>
             <TableRowColumn>
-              <RaisedButton
-                label="Remove"
-                secondary
+              <IconButton
                 onTouchTap={() => handleRemoveStudent(student.get('id'))}
                 disabled={deletingStudent}
-              />
+              >
+                <ActionDeleteForever />
+              </IconButton>
             </TableRowColumn>
           </TableRow>
         ))}

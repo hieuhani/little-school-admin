@@ -2,7 +2,7 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import { ACCESS_TOKEN_KEY } from 'config';
 
-export const baseAPIEndpoint = 'http://localhost:3000';
+export const baseAPIEndpoint = 'https://staging.littleschoolvn.com';
 
 export const httpMethods = {
   POST: 'POST',
@@ -139,9 +139,13 @@ export const routes = {
     },
   },
   user: {
-    notJoinToClass(schoolID, classID) {
+    notJoinToClass(schoolID, classID, page, size, username) {
+      const query = { page, per_page: size, class_id: classID };
+      if (username) {
+        query.username = username;
+      }
       return {
-        path: `/api/manager/schools/${schoolID}/users?class_id=${classID}`,
+        path: `/api/manager/schools/${schoolID}/users?${buildQueryString(query)}`,
         method: httpMethods.GET,
       };
     },
@@ -192,6 +196,13 @@ export const routes = {
         body: {
           accounts: accounts.toJS(),
         },
+      };
+    },
+    update(schoolID, userID, user) {
+      return {
+        path: `/api/manager/schools/${schoolID}/users/${userID}`,
+        method: httpMethods.PUT,
+        body: user,
       };
     },
   },

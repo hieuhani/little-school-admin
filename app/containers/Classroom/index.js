@@ -18,7 +18,15 @@ import {
   selectDefaultSchool,
 } from '../Dashboard/selectors';
 
-export class Classroom extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class Classroom extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.removeClassStudent = (studentID) => {
+      if (confirm('Are you sure you want to remove this student out of the class?')) { // eslint-disable-line no-alert
+        this.props.removeClassStudent(this.props.defaultSchool, this.props.params.classID, studentID);
+      }
+    };
+  }
   componentWillMount() {
     this.props.getClassStudents(this.props.defaultSchool, this.props.params.classID);
   }
@@ -31,7 +39,7 @@ export class Classroom extends React.PureComponent { // eslint-disable-line reac
         />
         <ViewTableStudents
           students={this.props.students}
-          handleRemoveStudent={(studentID) => this.props.removeClassStudent(this.props.defaultSchool, this.props.params.classID, studentID)}
+          handleRemoveStudent={this.removeClassStudent}
           deletingStudent={this.props.deletingStudent}
         />
         {this.props.children}

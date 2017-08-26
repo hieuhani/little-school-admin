@@ -4,6 +4,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import {
   GET_NOT_STUDENTS_OF_CLASS_REQUEST,
   POST_ADD_USERS_TO_CLASS_REQUEST,
+  GET_FIND_NOT_STUDENT_OF_CLASS_REQUEST,
 } from './constants';
 import request, { routes } from '../../services/api';
 import {
@@ -14,7 +15,7 @@ import {
 } from './actions';
 
 export function* getNotStudentsOfClass({ payload }) {
-  const response = yield call(request, routes.user.notJoinToClass(payload.schoolID, payload.classID));
+  const response = yield call(request, routes.user.notJoinToClass(payload.schoolID, payload.classID, payload.page, payload.size));
   if (!response.error) {
     yield put(getNotStudentsOfClassSuccess(response.data));
   } else {
@@ -43,7 +44,23 @@ export function* postAddUsersToClassWatcher() {
   yield cancel(watcher);
 }
 
+export function* getFindNotStudentOfClass({ payload }) {
+  const response = yield call(request, routes.user.notJoinToClass(payload.schoolID, payload.classID, 1, 1, payload.username));
+  if (!response.error) {
+    yield put(getNotStudentsOfClassSuccess(response.data));
+  } else {
+    yield put(getNotStudentsOfClassError(response));
+  }
+}
+
+export function* getFindNotStudentOfClassWatcher() {
+  const watcher = yield takeLatest(GET_FIND_NOT_STUDENT_OF_CLASS_REQUEST, getFindNotStudentOfClass);
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
 export default [
   getNotStudentsOfClassWatcher,
   postAddUsersToClassWatcher,
+  getFindNotStudentOfClassWatcher,
 ];

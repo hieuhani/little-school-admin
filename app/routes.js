@@ -314,6 +314,25 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
               },
             },
+            {
+              path: '/accounts/:accountID/edit',
+              name: 'edit_account',
+              getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                  import('containers/AccountEdit/sagas'),
+                  import('containers/AccountEdit'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([sagas, component]) => {
+                  injectSagas(sagas.default);
+                  renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+              },
+            },
           ],
         },
         {
