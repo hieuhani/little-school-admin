@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import styled from 'styled-components';
+import { browserHistory } from 'react-router';
 import ViewDialog from '../ViewDialog';
 import ViewDialogHeader from '../ViewDialogHeader';
 import ViewBottomToolbar from '../ViewBottomToolbar';
 import ButtonFlat from '../ButtonFlat';
+
 
 const Table = styled.table`
   width: 100%;
@@ -63,11 +65,17 @@ function ViewStudentDetails({ student, closeModal }) {
         ))}
       </Classes>}
       <ViewBottomToolbar>
+        <ButtonFlat label="Update" onClick={() => browserHistory.push(`/accounts/${student.get('id')}/edit`)} />
+        <Spacer />
         <ButtonFlat highlighted label="Close" onClick={closeModal} />
       </ViewBottomToolbar>
     </ViewDialog>
   );
 }
+
+const Spacer = styled.span`
+  width: 12px;
+`;
 
 ViewStudentDetails.propTypes = {
   student: PropTypes.instanceOf(Immutable.Map),
